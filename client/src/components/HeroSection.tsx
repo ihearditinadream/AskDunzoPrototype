@@ -1,16 +1,71 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import logoBlack from "@assets/unnamed (1)_1751431724399.jpg";
 
 export default function HeroSection() {
   const [demoStep, setDemoStep] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [inputText, setInputText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setDemoStep(1);
-    }, 3000);
+    const runAnimation = () => {
+      // Reset state
+      setDemoStep(0);
+      setInputText("");
+      setIsDarkMode(false);
 
-    return () => clearTimeout(timer);
+      // Animate the entire process
+      const animationSteps = [
+        { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
+        { delay: 2500, action: () => setDemoStep(2) }, // Show input box
+        { delay: 3500, action: () => setDemoStep(3) }, // Start typing
+        { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
+        { delay: 8000, action: () => setDemoStep(5) }, // Show dark mode button
+        { delay: 9500, action: () => setIsDarkMode(true) }, // Auto-toggle dark mode
+        { delay: 11000, action: () => setIsDarkMode(false) }, // Toggle back
+      ];
+
+      const timers = animationSteps.map(step => 
+        setTimeout(step.action, step.delay)
+      );
+
+      // Schedule next animation cycle
+      const restartTimer = setTimeout(runAnimation, 13000);
+
+      return [...timers, restartTimer];
+    };
+
+    const timers = runAnimation();
+    return () => timers.forEach(timer => clearTimeout(timer));
+  }, []);
+
+  // Typing animation effect
+  useEffect(() => {
+    if (demoStep === 3) {
+      const targetText = "Add a dark mode button to this site!";
+      let currentIndex = 0;
+      
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= targetText.length) {
+          setInputText(targetText.substring(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 80);
+
+      return () => clearInterval(typingInterval);
+    }
+  }, [demoStep]);
+
+  // Cursor blink effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+
+    return () => clearInterval(cursorInterval);
   }, []);
 
   const toggleDarkMode = () => {
@@ -53,15 +108,47 @@ export default function HeroSection() {
 
               {/* AskDunzo Interface Overlay */}
               <div className="relative bg-white p-8">
-                {/* Demo Input Box */}
-                <div className="mb-8 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-                  <input
-                    type="text"
-                    placeholder="Add a dark mode button to this site!"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 bg-white"
-                    readOnly
-                  />
-                </div>
+                {/* AskDunzo Icon - appears in step 1 */}
+                {demoStep >= 1 && (
+                  <div className={`absolute top-4 right-4 transition-all duration-500 ${
+                    demoStep >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                  }`}>
+                    <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-colors">
+                      <img 
+                        src={logoBlack} 
+                        alt="AskDunzo" 
+                        className="w-6 h-6 object-contain invert"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Demo Input Box - appears in step 2 */}
+                {demoStep >= 2 && (
+                  <div className={`mb-8 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 transition-all duration-500 ${
+                    demoStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+                  }`}>
+                    <div className="flex items-center">
+                      <input
+                        type="text"
+                        placeholder="What would you like to add or change on this site?"
+                        value={inputText}
+                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 bg-white"
+                        readOnly
+                      />
+                      {demoStep === 3 && showCursor && (
+                        <span className="absolute right-8 text-gray-700 animate-pulse">|</span>
+                      )}
+                    </div>
+                    
+                    {/* Processing indicator - appears in step 4 */}
+                    {demoStep === 4 && (
+                      <div className="mt-2 text-sm text-gray-500 animate-pulse">
+                        ✨ Processing your request...
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Mock Website Content */}
                 <div className={`p-6 rounded-lg transition-all duration-500 ${
@@ -83,11 +170,11 @@ export default function HeroSection() {
 
                   {/* Dark Mode Button (appears after demo) */}
                   <div className="flex justify-end">
-                    {demoStep >= 1 && (
+                    {demoStep >= 5 && (
                       <Button
                         onClick={toggleDarkMode}
                         className={`transition-all duration-500 transform ${
-                          demoStep >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                          demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
                         } ${isDarkMode ? 'bg-yellow-500 text-black hover:bg-yellow-400' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
                       >
                         {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}

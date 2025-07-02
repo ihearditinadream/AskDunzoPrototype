@@ -83,7 +83,7 @@ export default function PricingSection() {
             <div className="text-center mb-8">
               <h3 className="font-hand text-2xl font-bold text-black mb-2">Premium</h3>
               <div className="text-4xl font-bold text-black mb-2">
-                {isLifetime ? '$199' : '$10'}
+                {isLifetime ? '$200' : '$10'}
               </div>
               <div className="text-gray-600">
                 {isLifetime ? 'one-time payment' : 'per month'}
@@ -141,7 +141,7 @@ export default function PricingSection() {
                   Limited Time
                 </div>
                 <h3 className="font-hand text-2xl font-bold text-black mb-2">Lifetime Premium</h3>
-                <div className="text-4xl font-bold text-black mb-2">$199</div>
+                <div className="text-4xl font-bold text-black mb-2">$200</div>
                 <div className="text-gray-600">one-time payment</div>
               </div>
 

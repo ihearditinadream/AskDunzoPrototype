@@ -1,5 +1,9 @@
 // Server configuration and environment variable validation
 
+// Ensure environment variables are loaded
+import dotenv from "dotenv";
+dotenv.config();
+
 export const config = {
   stripe: {
     secretKey: process.env.STRIPE_SECRET_KEY || '',

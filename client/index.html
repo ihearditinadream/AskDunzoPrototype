@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>AskDunzo - Keep I.T. Simple</title>
+    <meta name="description" content="Add any feature to any website or your PC with a simple request. Transform your browsing experience with AskDunzo's browser extension." />
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="AskDunzo - Keep I.T. Simple" />
+    <meta property="og:description" content="Add any feature to any website or your PC with a simple request. Transform your browsing experience with AskDunzo's browser extension." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://askdunzo.com" />
+    
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    
+    <script>
+      // Intersection Observer for fade-in animations
+      document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        setTimeout(() => {
+          document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+          });
+        }, 100);
+      });
+    </script>
+  </body>
+</html>

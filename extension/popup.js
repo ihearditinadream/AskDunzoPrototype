@@ -48,17 +48,21 @@ function updateAuthUI() {
   const subscriptionStatus = document.getElementById('subscription-status');
   
   if (authStatus.authenticated) {
-    // Show authenticated UI
+    // Show authenticated UI - using safe DOM creation instead of innerHTML
     authSection.innerHTML = `
       <div class="user-info">
         <div class="user-avatar"></div>
         <div class="user-details">
           <h3>Welcome back!</h3>
-          <p>${authStatus.subscription || 'free'} plan</p>
+          <p class="subscription-plan"></p>
         </div>
       </div>
       <button class="auth-btn" id="logout-btn">Log Out</button>
     `;
+    
+    // Safely set subscription text to prevent XSS
+    const subscriptionPlan = authSection.querySelector('.subscription-plan');
+    subscriptionPlan.textContent = `${authStatus.subscription || 'free'} plan`;
     
     quickActions.style.display = 'block';
     

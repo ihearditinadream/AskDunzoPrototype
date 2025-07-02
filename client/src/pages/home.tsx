@@ -36,7 +36,7 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center space-x-4 mb-6">
-              {user?.profileImageUrl && (
+              {user && user.profileImageUrl && (
                 <img
                   src={user.profileImageUrl}
                   alt="Profile"
@@ -45,11 +45,11 @@ export default function Home() {
               )}
               <div>
                 <h2 className="text-xl font-semibold">
-                  {user?.firstName || user?.lastName
+                  {user && (user.firstName || user.lastName)
                     ? `${user.firstName || ""} ${user.lastName || ""}`.trim()
                     : "User"}
                 </h2>
-                <p className="text-gray-600">{user?.email}</p>
+                <p className="text-gray-600">{user && user.email}</p>
               </div>
             </div>
             <p className="text-gray-700 mb-6">

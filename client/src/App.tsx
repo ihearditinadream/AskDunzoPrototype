@@ -6,6 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/useAuth";
 import Landing from "@/pages/landing";
 import Home from "@/pages/home";
+import Dashboard from "@/pages/dashboard";
+import FeatureRequest from "@/pages/feature-request";
+import FeatureHistory from "@/pages/feature-history";
+import DataSharing from "@/pages/data-sharing";
+import Subscription from "@/pages/subscription";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,7 +22,13 @@ function Router() {
         <Route path="/" component={Landing} />
       ) : (
         <>
-          <Route path="/" component={Home} />
+          <Route path="/" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard/request" component={FeatureRequest} />
+          <Route path="/dashboard/history" component={FeatureHistory} />
+          <Route path="/dashboard/data-sharing" component={DataSharing} />
+          <Route path="/dashboard/subscription" component={Subscription} />
+          <Route path="/home" component={Home} />
         </>
       )}
       <Route component={NotFound} />

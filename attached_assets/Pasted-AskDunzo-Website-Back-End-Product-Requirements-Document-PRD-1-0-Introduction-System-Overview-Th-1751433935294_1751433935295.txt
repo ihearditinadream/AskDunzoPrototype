@@ -1,0 +1,197 @@
+AskDunzo Website: Back-End Product Requirements Document (PRD)
+1.0 Introduction & System Overview
+This document specifies the back-end architecture, services, and APIs required to support the AskDunzo website, browser extension, and PC application. The back-end will serve as the central nervous system, managing user authentication, subscriptions, data processing, and communication with the core "Dunzo" AI feature-generation service.
+
+The architecture will be designed as a set of microservices or a modular monolith to ensure scalability, maintainability, and security. The primary programming language for the back-end services will be Python.
+
+2.0 High-Level Architecture
+The system consists of several key components:
+
+Web Server (API Gateway): The main entry point for all requests from the front-end clients (website, browser extension). It will handle routing, authentication, and request validation.
+
+User Service: Manages all user-related data, including profiles, authentication, and subscription status.
+
+Payment Service: Integrates with Stripe to handle all subscription payments, renewals, and cancellations.
+
+Feature Request Service: Manages the lifecycle of a user's feature request, from submission to queuing and delegating to the AI model.
+
+WebSquare Service: Powers the community marketplace, managing feature submissions, ratings, and creator payouts.
+
+Data Anonymization Service: A background service responsible for processing user data for the Data Sharing Program, ensuring it is fully anonymized and aggregated.
+
+Primary Database: The central data store for the application.
+
+Dunzo AI Service (External): The core AI model that generates the features. The back-end will interact with this service via a secure API.
+
+3.0 Technology Stack
+Backend Language/Framework: Python 3.x with Flask or FastAPI.
+
+Reasoning: Flask is a lightweight and flexible framework ideal for building robust APIs. FastAPI is an excellent alternative for higher performance and automatic API documentation.
+
+Database: PostgreSQL or Firestore.
+
+PostgreSQL (Recommended): A powerful, open-source relational database that provides strong data integrity, which is crucial for managing user subscriptions and payments.
+
+Firestore (Alternative): A NoSQL, document-based database that offers real-time capabilities and easy scalability, which could be beneficial for the chat-like feature requests and WebSquare.
+
+Authentication: JWT (JSON Web Tokens). A token-based authentication system will be implemented. Upon login, the server will generate a signed JWT for the client to store and send with subsequent authenticated requests.
+
+Payment Gateway: Stripe API. For handling all subscription payments, securely managing credit card information (off-site), and managing recurring billing logic.
+
+Cloud & Deployment:
+
+Cloud Provider: Google Cloud Platform (GCP) or Amazon Web Services (AWS).
+
+Deployment: The application will be containerized using Docker and deployed using a service like Google Cloud Run (for serverless containers) or Kubernetes for orchestration. This ensures scalability and portability.
+
+Asynchronous Task Queue: Celery with Redis or RabbitMQ. To handle long-running tasks in the background, such as communicating with the Dunzo AI, processing data for the Data Sharing Program, and sending emails.
+
+4.0 Database Schema (PostgreSQL Example)
+-- Users Table
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    subscription_tier VARCHAR(20) NOT NULL DEFAULT 'free', -- 'free', 'premium', 'lifetime'
+    subscription_id VARCHAR(255), -- Stripe subscription ID
+    subscription_expires_at TIMESTAMPTZ,
+    data_sharing_opt_in BOOLEAN NOT NULL DEFAULT false,
+    data_sharing_profit_split INT NOT NULL DEFAULT 50, -- 50 or 100
+    phone_number VARCHAR(50) UNIQUE, -- For referral program verification
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Feature Requests Table
+CREATE TABLE feature_requests (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id),
+    request_text TEXT NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'pending', -- 'pending', 'processing', 'completed', 'failed'
+    generated_code TEXT,
+    expires_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- WebSquare Features Table
+CREATE TABLE websquare_features (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    creator_id UUID NOT NULL REFERENCES users(id),
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    category VARCHAR(100),
+    install_count INT NOT NULL DEFAULT 0,
+    is_verified BOOLEAN NOT NULL DEFAULT false,
+    is_creator_managed BOOLEAN NOT NULL DEFAULT true, -- False if Dunzo auto-updates
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- WebSquare Ratings Table
+CREATE TABLE websquare_ratings (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    feature_id UUID NOT NULL REFERENCES websquare_features(id),
+    user_id UUID NOT NULL REFERENCES users(id),
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    review_text TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE(feature_id, user_id) -- A user can only rate a feature once
+);
+
+-- Referral Program Table
+CREATE TABLE referrals (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    referrer_id UUID NOT NULL REFERENCES users(id), -- The user who referred someone
+    referred_id UUID NOT NULL REFERENCES users(id), -- The user who was referred
+    is_confirmed BOOLEAN NOT NULL DEFAULT false, -- True when the referred user verifies their phone number
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+5.0 API Endpoints
+All endpoints should be prefixed with /api/v1.
+
+Authentication
+POST /auth/signup: Creates a new user. Requires email, password.
+
+POST /auth/login: Authenticates a user. Requires email, password. Returns a JWT.
+
+POST /auth/verify-phone: Verifies a phone number, confirming referrals.
+
+User & Dashboard
+GET /users/me: Retrieves the profile for the currently authenticated user (includes subscription status, feature usage, etc.).
+
+PUT /users/me: Updates the profile for the currently authenticated user.
+
+Subscriptions & Payments
+POST /subscriptions/create-checkout-session: Creates a Stripe checkout session for a selected plan (premium or lifetime). Returns a session URL for the front-end to redirect to.
+
+POST /subscriptions/webhook: A public endpoint for Stripe to send events (e.g., checkout.session.completed, invoice.payment_succeeded). This endpoint will update the user's subscription status in the database.
+
+POST /subscriptions/cancel: Cancels the current user's active subscription.
+
+Feature Generation
+POST /features/request: Submits a new feature request. Body contains request_text. The server validates the user's request limit based on their subscription tier and queues the request for processing by the Dunzo AI service.
+
+GET /features/history: Retrieves a paginated list of the user's past feature requests and their statuses.
+
+Data Sharing Program
+POST /data-sharing/opt-in: Allows a user to opt-in or modify their data sharing preferences. Body contains optIn (boolean) and profitSplit (integer: 50 or 100).
+
+WebSquare Marketplace
+GET /websquare/features: Lists all available WebSquare features. Supports filtering by category and sorting by rating or install_count.
+
+POST /websquare/features: Submits a new feature to WebSquare (Premium users only).
+
+GET /websquare/features/{featureId}: Retrieves details for a single WebSquare feature.
+
+POST /websquare/features/{featureId}/install: Records that a user has "installed" a feature (increments install_count).
+
+POST /websquare/features/{featureId}/rate: Submits a rating and review for a feature.
+
+6.0 Core Logic Implementation
+Feature Request Pipeline:
+
+User submits a request via POST /features/request.
+
+The API validates the user's request limits.
+
+If valid, the request is saved to the feature_requests table with status: 'pending'.
+
+An asynchronous task is dispatched to a Celery worker.
+
+The worker determines processing priority based on the user's subscription tier.
+
+The worker makes a secure API call to the external Dunzo AI service, sending the request_text.
+
+The worker waits for the AI's response (the generated code/feature).
+
+Upon receiving the response, the worker updates the feature_requests table with the generated_code and sets status: 'completed'.
+
+The front-end client, which can poll the request status or receive a real-time update (via WebSockets), is notified of completion.
+
+Data Anonymization Process:
+
+A scheduled background job (e.g., a nightly Celery task) runs to process user data.
+
+The job queries for data from users who have opted into the program (e.g., browsing history, feature requests).
+
+Crucially, the service strips ALL Personally Identifiable Information (PII). User IDs are replaced with temporary, untraceable identifiers for the aggregation batch. Timestamps are generalized.
+
+Data is aggregated into statistical models (e.g., "25% of users on site X requested a dark mode feature").
+
+This fully anonymous, aggregated data is stored separately and is what gets sold. The raw, user-linked data is never shared.
+
+Referral Program Logic:
+
+When a new user signs up, if they used a referral link, an entry is made in the referrals table.
+
+When that new user verifies their phone number, the is_confirmed flag is set to true.
+
+A service checks for confirmed referrals and grants the referrer their perk (e.g., an extra feature slot). The logic for "slots" will be managed within the users table or a related table.
+
+7.0 Security & Compliance
+Password Security: All passwords must be hashed using a strong, salted algorithm like Bcrypt.
+
+API Security: All endpoints must be protected with HTTPS/TLS. Implement rate limiting to prevent abuse. All user-input must be sanitized and validated to prevent SQL Injection and XSS attacks.
+
+Data Privacy: The data anonymization process must be rigorously tested and audited to ensure no PII is ever leaked. The terms of the Data Sharing Program must be transparent and legally compliant (e.g., with GDPR, CCPA).
+
+Secrets Management: API keys, database credentials, and other secrets must be stored securely using a service like HashiCorp Vault, GCP Secret Manager, or AWS Secrets Manager, and never hardcoded in the repository.

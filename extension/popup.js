@@ -185,6 +185,17 @@ async function loadActiveFeatures() {
   }
 }
 
+// Safely escape HTML to prevent XSS
+function escapeHtml(unsafe) {
+  if (typeof unsafe !== 'string') return '';
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // Display features
 function displayFeatures(features) {
   const featuresList = document.getElementById('features-list');
@@ -195,13 +206,13 @@ function displayFeatures(features) {
   }
   
   featuresList.innerHTML = features.map(([id, feature]) => `
-    <div class="feature-item" data-feature-id="${id}">
+    <div class="feature-item" data-feature-id="${escapeHtml(id)}">
       <div class="feature-header">
-        <span class="feature-title">${feature.request || 'Custom Feature'}</span>
+        <span class="feature-title">${escapeHtml(feature.request || 'Custom Feature')}</span>
         <div class="feature-toggle ${feature.enabled ? 'active' : ''}" 
-             data-feature-id="${id}"></div>
+             data-feature-id="${escapeHtml(id)}"></div>
       </div>
-      <div class="feature-domain">${new URL(currentTab.url).hostname}</div>
+      <div class="feature-domain">${escapeHtml(new URL(currentTab.url).hostname)}</div>
     </div>
   `).join('');
   

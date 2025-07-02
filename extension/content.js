@@ -246,7 +246,9 @@ async function injectFeature(feature) {
     
     // Parse HTML safely without executing scripts
     const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = feature.html;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(feature.html, 'text/html');
+    Array.from(doc.body.childNodes).forEach(node => tempDiv.appendChild(node));
     
     // Clone nodes without scripts
     const safeNodes = Array.from(tempDiv.childNodes).map(node => {

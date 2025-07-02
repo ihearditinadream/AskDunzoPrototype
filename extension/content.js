@@ -187,6 +187,46 @@ function captureKeyStyles() {
   return styles;
 }
 
+// Sanitize a DOM node to prevent XSS
+function sanitizeNode(node) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    return node.cloneNode(true);
+  }
+  
+  if (node.nodeType === Node.ELEMENT_NODE) {
+    const tagName = node.tagName.toLowerCase();
+    
+    // Block dangerous elements
+    const dangerousTags = ['script', 'iframe', 'object', 'embed', 'link', 'meta', 'style'];
+    if (dangerousTags.includes(tagName)) {
+      return null;
+    }
+    
+    // Create safe element
+    const safeElement = document.createElement(tagName);
+    
+    // Copy safe attributes
+    const dangerousAttrs = /^(on|javascript:|data:)/i;
+    Array.from(node.attributes).forEach(attr => {
+      if (!dangerousAttrs.test(attr.name) && !dangerousAttrs.test(attr.value)) {
+        safeElement.setAttribute(attr.name, attr.value);
+      }
+    });
+    
+    // Recursively sanitize children
+    Array.from(node.childNodes).forEach(child => {
+      const safeChild = sanitizeNode(child);
+      if (safeChild) {
+        safeElement.appendChild(safeChild);
+      }
+    });
+    
+    return safeElement;
+  }
+  
+  return null;
+}
+
 // Inject a feature into the page
 async function injectFeature(feature) {
   const featureId = `askdunzo-feature-${Date.now()}`;
@@ -203,7 +243,17 @@ async function injectFeature(feature) {
   if (feature.html) {
     const container = document.createElement('div');
     container.id = featureId;
-    container.innerHTML = feature.html;
+    
+    // Parse HTML safely without executing scripts
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = feature.html;
+    
+    // Clone nodes without scripts
+    const safeNodes = Array.from(tempDiv.childNodes).map(node => {
+      return sanitizeNode(node);
+    }).filter(Boolean);
+    
+    safeNodes.forEach(node => container.appendChild(node));
     
     // Find injection point or append to body
     const injectionPoint = feature.injectionPoint ? 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Feature - AskDunzo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="feature-window">
+  <div class="feature-container">
+    <!-- Header -->
+    <div class="feature-header">
+      <img src="assets/logo.png" alt="AskDunzo" class="feature-logo">
+      <h2>What would you like to add?</h2>
+    </div>
+
+    <!-- Input Section -->
+    <div class="feature-input-section">
+      <textarea 
+        id="feature-request" 
+        class="feature-textarea" 
+        placeholder="e.g., Add a global hotkey to minimize all windows, Create a desktop widget for weather, Set up automatic dark mode at sunset..."
+        rows="4"
+      ></textarea>
+      
+      <!-- Target Selection -->
+      <div class="target-selection">
+        <label>Apply to:</label>
+        <select id="target-select" class="target-dropdown">
+          <option value="system">Entire System</option>
+          <option value="current-app">Current Application</option>
+          <option value="specific-app">Specific Application</option>
+        </select>
+      </div>
+
+      <!-- Specific App Input (hidden by default) -->
+      <div id="specific-app-input" class="specific-app-input" style="display: none;">
+        <input 
+          type="text" 
+          id="app-name" 
+          class="app-input" 
+          placeholder="Enter application name (e.g., Chrome, VS Code)"
+        >
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="feature-actions">
+      <button id="generate-btn" class="btn btn-primary">
+        Generate Feature
+      </button>
+      <button id="cancel-btn" class="btn btn-secondary">
+        Cancel
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-state" class="feature-loading" style="display: none;">
+      <div class="spinner small"></div>
+      <p>Analyzing your request...</p>
+    </div>
+
+    <!-- Result Section -->
+    <div id="result-section" class="result-section" style="display: none;">
+      <h3 id="feature-name" class="feature-name"></h3>
+      <p id="feature-description" class="feature-description"></p>
+      
+      <div class="result-actions">
+        <button id="apply-btn" class="btn btn-success">
+          Apply Feature
+        </button>
+        <button id="try-again-btn" class="btn btn-secondary">
+          Try Another
+        </button>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="error-state" style="display: none;">
+      <p class="error-message"></p>
+      <button id="retry-btn" class="btn btn-secondary">
+        Try Again
+      </button>
+    </div>
+  </div>
+
+  <script src="feature-renderer.js"></script>
+</body>
+</html>

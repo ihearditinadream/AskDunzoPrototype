@@ -12,6 +12,7 @@ import FeatureHistory from "@/pages/feature-history";
 import DataSharing from "@/pages/data-sharing";
 import Subscription from "@/pages/subscription";
 import ExtensionInstall from "@/pages/extension-install";
+import DownloadPage from "@/pages/download";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -31,9 +32,11 @@ function Router() {
           <Route path="/dashboard/subscription" component={Subscription} />
           <Route path="/home" component={Home} />
           <Route path="/install-extension" component={ExtensionInstall} />
+          <Route path="/download" component={DownloadPage} />
         </>
       )}
       <Route path="/install-extension" component={ExtensionInstall} />
+      <Route path="/download" component={DownloadPage} />
       <Route component={NotFound} />
     </Switch>
   );

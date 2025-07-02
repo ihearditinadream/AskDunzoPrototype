@@ -77,8 +77,7 @@ export default function HeroSection() {
   };
 
   const handleDownloadExtension = () => {
-    // In a real app, this would link to the Chrome Web Store
-    alert("Extension download would be available in the Chrome Web Store");
+    window.location.href = "/download";
   };
 
   return (

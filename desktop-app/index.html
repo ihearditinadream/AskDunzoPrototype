@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AskDunzo Desktop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-section">
+        <img src="assets/logo.png" alt="AskDunzo" class="logo">
+        <div>
+          <h1>AskDunzo Desktop</h1>
+          <p class="tagline">Keep I.T. Simple</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="add-feature-btn" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add Feature
+        </button>
+        <button id="settings-btn" class="btn btn-ghost">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3m18.364-6.364l-4.242 4.242M7.878 7.878L3.636 3.636m0 16.728l4.242-4.242m8.486 0l4.242 4.242"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Auth State -->
+    <div id="auth-section" class="auth-section">
+      <div class="auth-card">
+        <h2>Welcome to AskDunzo Desktop</h2>
+        <p>Sign in to start transforming your PC with simple requests</p>
+        <button id="login-btn" class="btn btn-primary btn-large">
+          Sign In with Browser
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content (shown when authenticated) -->
+    <main id="main-content" class="main-content" style="display: none;">
+      <!-- Quick Actions -->
+      <section class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="action-grid">
+          <button class="action-card" data-action="dark-mode">
+            <div class="action-icon">🌙</div>
+            <h3>Toggle Dark Mode</h3>
+            <p>Switch system-wide dark mode</p>
+          </button>
+          <button class="action-card" data-action="screenshot">
+            <div class="action-icon">📸</div>
+            <h3>Screenshot Tool</h3>
+            <p>Set up quick screenshots</p>
+          </button>
+          <button class="action-card" data-action="window-manager">
+            <div class="action-icon">🪟</div>
+            <h3>Window Manager</h3>
+            <p>Organize your windows</p>
+          </button>
+          <button class="action-card" data-action="custom">
+            <div class="action-icon">✨</div>
+            <h3>Custom Feature</h3>
+            <p>Create anything you want</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- Active Features -->
+      <section class="active-features">
+        <h2>Active Features</h2>
+        <div id="features-list" class="features-list">
+          <div class="empty-state">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <p>No features added yet</p>
+            <p class="text-muted">Click "Add Feature" to get started</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span id="subscription-status" class="subscription-badge">Free Plan</span>
+        <span id="feature-count">0 features active</span>
+      </div>
+    </main>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>Processing...</p>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

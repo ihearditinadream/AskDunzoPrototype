@@ -57,9 +57,9 @@ export default function Home() {
               Download the AskDunzo extension to get started.
             </p>
             <div className="flex space-x-4">
-              <a href="/install-extension">
+              <a href="/download">
                 <Button className="bg-black text-white hover:bg-gray-800">
-                  Download & Install Extension
+                  Download AskDunzo
                 </Button>
               </a>
               <a href="/dashboard">

@@ -68,9 +68,10 @@ export default function Navigation() {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <a href="/download">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all font-medium shadow-lg hover:shadow-xl transform hover:scale-105">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="/download" className="relative group">
+              <div className="absolute inset-0 bg-black rounded-lg transform rotate-1 group-hover:rotate-2 transition-transform"></div>
+              <Button className="relative bg-white text-black px-6 py-2 font-medium font-hand text-lg border-2 border-black rounded-lg hover:bg-gray-50 transition-all duration-200 transform -rotate-1 group-hover:rotate-0">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                 </svg>
                 Download
@@ -103,9 +104,10 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="flex flex-col space-y-4">
-              <a href="/download" className="px-4">
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all font-medium shadow-lg">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <a href="/download" className="px-4 relative group">
+                <div className="absolute inset-0 mx-4 bg-black rounded-lg transform rotate-1 group-hover:rotate-2 transition-transform"></div>
+                <Button className="relative w-full bg-white text-black font-medium font-hand text-lg border-2 border-black rounded-lg hover:bg-gray-50 transition-all duration-200 transform -rotate-1 group-hover:rotate-0">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                   </svg>
                   Download AskDunzo

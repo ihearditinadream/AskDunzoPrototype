@@ -93,6 +93,28 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* Hand-drawn button style */
+.hand-drawn-button {
+  position: relative;
+  border-radius: 8px;
+  overflow: visible;
+  clip-path: polygon(
+    2% 0%, 98% 0%, 100% 2%, 100% 98%, 98% 100%, 2% 100%, 0% 98%, 0% 2%
+  );
+}
+
+.hand-drawn-button::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid hsl(0, 0%, 0%);
+  border-radius: 8px;
+  pointer-events: none;
+  clip-path: polygon(
+    1% 0%, 99% 0%, 100% 1%, 100% 99%, 99% 100%, 1% 100%, 0% 99%, 0% 1%
+  );
+}
+
 /* Grid background */
 .grid-bg {
   background-image: radial-gradient(circle, hsl(0, 0%, 90%) 1px, transparent 1px);

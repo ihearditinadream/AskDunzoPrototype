@@ -1,0 +1,219 @@
+AskDunzo Website: Front-End Product Requirements Document (PRD)
+1.0 Introduction & Vision
+This document outlines the front-end requirements for the AskDunzo marketing and user-facing website. The primary goal of the website is to clearly communicate the value of the AskDunzo browser extension and PC application, drive user sign-ups and downloads, and serve as a portal for user management.
+
+The website's design and user experience will be guided by the company tagline: “Keep I.T. Simple.” The aesthetic will be minimalist, clean, and unique, reflecting the simplicity and power of the product itself. It will primarily use a black-and-white color scheme with a distinct, digitally hand-drawn feel, inspired by the product logo.
+
+2.0 Visual Identity & Design Language
+The visual design should feel approachable, modern, and distinct from typical tech websites. The core principle is simplicity and clarity.
+
+Logo:
+
+The primarily black logo (unnamed (1).jpg) will be used on light/white backgrounds.
+
+The primarily white logo (download.png) will be used on dark/black backgrounds.
+
+Color Palette:
+
+Primary Background: White (#FFFFFF) or a very light off-white.
+
+Primary Text & Elements: Black (#000000).
+
+Accent Color (for CTAs, highlights): A subtle, slightly off-black or a muted blue for interactive elements to provide clear visual cues without breaking the monochrome theme.
+
+Borders & Containers: Elements like pricing tables and feature boxes will have a thick, slightly irregular, hand-drawn style border, mimicking the style seen in image_ec26bd.png and image_ec26e2.png.
+
+Typography:
+
+Headings: A friendly, clean, hand-drawn font (e.g., "Patrick Hand SC" or a similar Google Font) to match the logo's aesthetic. This should be used for all major headlines like "Keep I.T. Simple" and section titles.
+
+Body Text: A highly legible, clean sans-serif font (e.g., "Inter" or "Manrope") for paragraphs, feature descriptions, and other detailed text to ensure readability.
+
+Overall Feel & Inspiration:
+
+The layout should be spacious with ample white space, drawing inspiration from image_ec2685.png.
+
+The use of hand-drawn-style containers and icons, as seen in image_ec26bd.png, should be a recurring theme to unify the design.
+
+The background can feature a subtle, light gray grid pattern, similar to image_ec2685.png, to add texture without being distracting.
+
+3.0 Website Structure & Navigation
+The website will be a single-page application experience where possible, with smooth scrolling to different sections. The main navigation bar will be fixed at the top of the page.
+
+Navigation Bar (Header):
+
+Left: AskDunzo Logo and Name ("AskDunzo" with "Keep I.T. Simple" as a sub-line).
+
+Center/Right: Links that scroll to the relevant sections:
+
+Features (or "How It Works")
+
+Pricing
+
+WebSquare
+
+Data Sharing
+
+Far Right:
+
+Login Button
+
+Sign Up Button (primary Call-to-Action style)
+
+4.0 Detailed Page-by-Page Breakdown (Sections)
+4.1 Hero Section
+Objective: Immediately grab the user's attention and explain the core value proposition.
+
+Layout & Content:
+
+Main Headline: Large, hand-drawn font: "Keep I.T. Simple"
+
+Sub-headline: Clean sans-serif font: "Add any feature to any website or your PC with a simple request."
+
+Visual Demonstration (Centerpiece):
+
+A large, stylized container with a hand-drawn border, as seen in image_ec26e2.png.
+
+Inside, an animation or a series of static images will demonstrate the product in action.
+
+Step 1: Show a generic website (e.g., a simple blog).
+
+Step 2: An overlay of the AskDunzo text box appears with the prompt: “What would you like to add or change on this site?”
+
+Step 3: Animated text types into the box: “Add a dark mode button to this site!”
+
+Step 4: The text box fades, and a "Dark Mode" toggle appears on the generic website, which then switches to a dark theme.
+
+Call-to-Action (CTA) Buttons:
+
+Primary Button: GET STARTED FOR FREE
+
+Secondary Button: DOWNLOAD EXTENSION
+
+Compatibility Icons: Below the CTAs, display small, simple icons for Chrome, Firefox, Windows, and macOS, indicating compatibility.
+
+4.2 How It Works Section
+Objective: Explain the simple, three-step process for using AskDunzo.
+
+Layout & Content:
+
+Headline: "How It Works"
+
+Sub-headline: "Three simple steps to transform your website application."
+
+Three-Step Visual Guide:
+
+Use three distinct boxes with hand-drawn borders, arranged horizontally, as in image_ec26bd.png.
+
+Each box contains a simple, hand-drawn icon and a short description.
+
+Box 1: Click the Icon - Icon of the AskDunzo 'D' logo. Text: "Find AskDunzo in your browser toolbar and click to get started."
+
+Box 2: Make a Request - Icon of a text box/prompt. Text: "Clearly type what you want to add or change on any website."
+
+Box 3: Enjoy Your Feature - Icon of a magic wand or star. Text: "Watch as your custom feature appears in seconds, ready to use."
+
+4.3 Pricing Section
+Objective: Clearly present the subscription tiers and encourage users to sign up for Premium.
+
+Layout & Content:
+
+Headline: "Choose Your Plan"
+
+Sub-headline: "Start with our free plan or unlock unlimited power with Premium."
+
+Tier Selection Toggle: A simple toggle/button group for MONTHLY and LIFETIME.
+
+Pricing Cards:
+
+Three side-by-side cards with hand-drawn borders: Free, Premium, and Lifetime Premium.
+
+The Premium card should be visually highlighted (e.g., slightly larger, or with a "Most Popular" banner).
+
+Each card will clearly list its features using checkmarks or simple bullet points, exactly as detailed in the technical document:
+
+Free ($0/user): 3 requests/week, Basic features, Weekly reset, etc.
+
+Premium ($10/month): 50 requests/week, Faster generation, Advanced features, etc.
+
+Lifetime Premium ($200 one-time): "Limited Time" badge, All premium perks, Highest priority, etc.
+
+Each card has a clear CTA button at the bottom: Get Started Free, Go Premium, Get Lifetime Access.
+
+4.4 Data Sharing Program Section
+Objective: Build trust and clearly explain the benefits of the opt-in data sharing program.
+
+Layout & Content:
+
+Headline: "Get Paid For Your Data. Seriously."
+
+Sub-headline: "We believe your data has value. Join our program and earn cash while helping improve AskDunzo for everyone."
+
+Two-Column Layout:
+
+Left Column (The Benefits): Use icons and short text to highlight the value props.
+
+100% Anonymized: Icon of a shield or lock. "Your privacy is our top priority. All data is anonymized and aggregated before it's used."
+
+Your Choice: Icon of a toggle switch. "Opt-in or out at any time. You are always in control of your data and can see who it's sold to on your dashboard."
+
+Real Money: Icon of a dollar sign. "We don't just reward you with points. Earn real cash payouts every 3 months for your contribution."
+
+Right Column (The Deal): A visual representation of the profit split, similar to the "Choose Your Split" concept.
+
+A simple visual showing the user's options: "Keep 50% of Profits" vs. "Give 100% of Profits for an extra premium slot."
+
+Clearly state the instant micro-rewards (extra feature slot, ad-blocking).
+
+4.5 WebSquare Marketplace Section
+Objective: Build anticipation for the marketplace and explain its purpose.
+
+Layout & Content:
+
+Headline: "WebSquare Marketplace"
+
+Sub-headline: "Browse, share, and install custom features created by the community."
+
+Main Visual:
+
+For the pre-launch phase, this section will feature a large, friendly "Coming Soon" message in the hand-drawn font.
+
+Include a simple, animated "under construction" graphic (e.g., a hand-drawn hammer tapping a nail).
+
+Feature Icons: Below the main visual, include three icon-and-text blocks similar to the "How It Works" section to explain the concept:
+
+Community Powered: Icon of people. "Features created by users, for users."
+
+Instant Install: Icon of a download/plus arrow. "Add powerful features from top creators with a single click."
+
+Earn Money: Icon of a money bag/badge. "Publish your own features and earn tips and rewards from the community."
+
+CTA Button: BROWSE WEBSQUARE (This button will be disabled or lead to the "Coming Soon" section initially).
+
+5.0 Interactive Elements & Animations
+Hover Effects: Buttons and interactive elements should have subtle hover effects, like a slight lift or a color fill, to provide feedback.
+
+Scroll Animations: As the user scrolls down the page, sections should fade in or slide in smoothly to create a dynamic experience.
+
+Loading States: Any action that requires a backend call (like signing up) should show a simple, non-intrusive loading animation (e.g., a spinning version of the cursor from the logo).
+
+6.0 Technology Stack Recommendation
+Front-End:
+
+HTML5: For semantic structure.
+
+CSS3: For styling, using modern features like Flexbox and Grid for layout.
+
+JavaScript (Vanilla or a lightweight framework like Svelte/Vue): To handle interactivity, animations, and API calls to the backend. Using a framework will help manage the state of the application, especially for the user login and dashboard sections.
+
+Potential Python Integration (for the AI builder to know):
+
+While the front-end is primarily JS-driven, JavaScript will make API calls to a backend (which can be built with Python using frameworks like Django or Flask) for:
+
+User authentication (Login/Sign Up).
+
+Processing subscription payments.
+
+Fetching user-specific data for the dashboard.
+
+Handling form submissions (e.g., from a contact form).

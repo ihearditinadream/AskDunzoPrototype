@@ -19,11 +19,18 @@ export default function Subscription() {
   const hasStripeSubscription = !!user?.stripeSubscriptionId;
 
   const createCheckoutMutation = useMutation({
-    mutationFn: () => 
-      apiRequest("POST", "/api/v1/subscriptions/create-checkout-session").then(res => res.json()),
+    mutationFn: (plan: string) => 
+      apiRequest("POST", "/api/v1/subscriptions/create-checkout-session", { plan }).then(res => res.json()),
     onSuccess: (data) => {
-      if (data.url) {
-        window.location.href = data.url;
+      if (data.sessionUrl) {
+        window.location.href = data.sessionUrl;
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to create checkout session - no URL returned",
+          variant: "destructive",
+        });
+        setIsProcessing(false);
       }
     },
     onError: (error: Error) => {
@@ -57,7 +64,7 @@ export default function Subscription() {
 
   const handleSubscribe = () => {
     setIsProcessing(true);
-    createCheckoutMutation.mutate();
+    createCheckoutMutation.mutate('premium');
   };
 
   const handleCancel = () => {

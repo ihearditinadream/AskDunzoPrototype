@@ -70,12 +70,12 @@ export default function DownloadPage() {
                       <span>Auto-syncs across devices</span>
                     </li>
                   </ul>
-                  <Link href="/install-extension">
+                  <a href="/downloads/chrome-extension.html" target="_blank">
                     <Button className="w-full bg-black text-white hover:bg-gray-800">
                       <Download className="w-4 h-4 mr-2" />
-                      Download Chrome Extension
+                      Install Extension
                     </Button>
-                  </Link>
+                  </a>
                   <p className="text-xs text-gray-500 mt-3 text-center">
                     Requires manual installation (not on Chrome Store yet)
                   </p>
@@ -150,10 +150,10 @@ export default function DownloadPage() {
                       <span>Offline capability</span>
                     </li>
                   </ul>
-                  <a href="/downloads/askdunzo-win.exe" download>
+                  <a href="/downloads/askdunzo-setup.exe" download>
                     <Button className="w-full bg-black text-white hover:bg-gray-800">
                       <Download className="w-4 h-4 mr-2" />
-                      Download .exe
+                      Download Installer
                     </Button>
                   </a>
                 </CardContent>
@@ -189,10 +189,10 @@ export default function DownloadPage() {
                       <span>Apple Silicon ready</span>
                     </li>
                   </ul>
-                  <a href="/downloads/askdunzo-mac.dmg" download>
+                  <a href="/downloads/askdunzo.dmg" download>
                     <Button className="w-full bg-black text-white hover:bg-gray-800">
                       <Download className="w-4 h-4 mr-2" />
-                      Download .dmg
+                      Download for Mac
                     </Button>
                   </a>
                 </CardContent>
@@ -228,10 +228,10 @@ export default function DownloadPage() {
                       <span>Universal compatibility</span>
                     </li>
                   </ul>
-                  <a href="/downloads/askdunzo-linux.AppImage" download>
+                  <a href="/downloads/askdunzo.AppImage" download>
                     <Button className="w-full bg-black text-white hover:bg-gray-800">
                       <Download className="w-4 h-4 mr-2" />
-                      Download AppImage
+                      Download for Linux
                     </Button>
                   </a>
                 </CardContent>

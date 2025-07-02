@@ -1,0 +1,16 @@
+
+AskDunzo for macOS - Disk Image
+
+This DMG contains:
+- AskDunzo.app (Universal Binary for Intel and Apple Silicon)
+- Quick Start Guide
+- License Agreement
+
+To install:
+1. Drag AskDunzo to your Applications folder
+2. Launch from Applications or Spotlight
+3. Grant necessary permissions when prompted
+
+System Requirements:
+- macOS 10.15 or later
+- 100MB free disk space

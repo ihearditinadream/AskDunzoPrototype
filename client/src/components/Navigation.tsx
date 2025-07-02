@@ -68,6 +68,14 @@ export default function Navigation() {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-3">
+            <a href="/download">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all font-medium shadow-lg hover:shadow-xl transform hover:scale-105">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                </svg>
+                Download
+              </Button>
+            </a>
             <Button variant="ghost" onClick={handleLogin} className="text-gray-700 hover:text-black font-medium px-4 py-2">
               Login
             </Button>
@@ -95,6 +103,14 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="flex flex-col space-y-4">
+              <a href="/download" className="px-4">
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all font-medium shadow-lg">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                  </svg>
+                  Download AskDunzo
+                </Button>
+              </a>
               <button
                 onClick={() => scrollToSection("features")}
                 className="text-left text-gray-700 hover:text-black transition-colors font-medium px-4 py-2"

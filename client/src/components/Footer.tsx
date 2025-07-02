@@ -50,9 +50,9 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button className="hover:text-white transition-colors text-left">
+                <a href="/download" className="hover:text-white transition-colors">
                   Download
-                </button>
+                </a>
               </li>
             </ul>
           </div>

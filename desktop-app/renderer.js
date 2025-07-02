@@ -129,6 +129,13 @@ function loadActiveFeatures() {
   updateFeaturesList();
 }
 
+// HTML escape function to prevent XSS
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 // Update features list UI
 function updateFeaturesList() {
   if (activeFeatures.length === 0) {
@@ -147,8 +154,8 @@ function updateFeaturesList() {
     featuresList.innerHTML = activeFeatures.map((feature, index) => `
       <div class="feature-item">
         <div class="feature-info">
-          <h4>${feature.name}</h4>
-          <p>${feature.description}</p>
+          <h4>${escapeHtml(feature.name || '')}</h4>
+          <p>${escapeHtml(feature.description || '')}</p>
         </div>
         <div class="feature-controls">
           <button class="btn btn-ghost" onclick="toggleFeature(${index})">

@@ -108,24 +108,27 @@ export default function HeroSection() {
 
               {/* AskDunzo Interface Overlay */}
               <div className="relative bg-white p-8 min-h-[400px]">
-                {/* AskDunzo Icon - centered in step 1, moves to corner in step 2+ */}
-                {demoStep >= 1 && (
-                  <div className={`transition-all duration-700 ${
-                    demoStep === 1 
-                      ? 'absolute inset-0 flex justify-center items-center' 
-                      : 'absolute top-4 right-4'
-                  }`}>
-                    <div className={`bg-black rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-all ${
-                      demoStep === 1 
-                        ? 'w-20 h-20 animate-pulse' 
-                        : 'w-10 h-10'
-                    }`}>
+                {/* Step 1: Show only centered logo */}
+                {demoStep === 1 && (
+                  <div className="absolute inset-0 flex justify-center items-center z-50">
+                    <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center animate-pulse">
                       <img 
                         src={logoBlack} 
                         alt="AskDunzo" 
-                        className={`object-contain invert transition-all ${
-                          demoStep === 1 ? 'w-12 h-12' : 'w-6 h-6'
-                        }`}
+                        className="w-12 h-12 object-contain invert"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 2+: Logo in corner with higher z-index */}
+                {demoStep >= 2 && (
+                  <div className="absolute top-4 right-4 z-50">
+                    <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                      <img 
+                        src={logoBlack} 
+                        alt="AskDunzo" 
+                        className="w-6 h-6 object-contain invert"
                       />
                     </div>
                   </div>
@@ -133,7 +136,7 @@ export default function HeroSection() {
 
                 {/* Demo Input Box - appears in step 2 */}
                 {demoStep >= 2 && (
-                  <div className={`transition-all duration-500 ${
+                  <div className={`relative z-40 transition-all duration-500 ${
                     demoStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
                   }`}>
                     <div className="mb-8 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
@@ -160,10 +163,10 @@ export default function HeroSection() {
                   </div>
                 )}
 
-                {/* Mock Website Content */}
-                <div className={`p-6 rounded-lg transition-all duration-500 ${
+                {/* Mock Website Content - positioned to avoid overlap */}
+                <div className={`${demoStep === 1 ? 'mt-0' : 'mt-0'} p-6 rounded-lg transition-all duration-500 ${
                   isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'
-                }`}>
+                } ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
                   <div className="mb-4">
                     <h2 className="text-2xl font-bold mb-2">My Blog</h2>
                     <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>

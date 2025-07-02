@@ -1,8 +1,13 @@
-# AskDunzo Website
+# AskDunzo Platform
 
 ## Overview
 
-AskDunzo is a browser extension marketing website built as a full-stack React application with Express.js backend. The platform showcases a browser extension that allows users to add custom features to any website through simple requests. The website serves as both a marketing landing page and a user dashboard with authentication.
+AskDunzo is a comprehensive platform consisting of:
+1. **Marketing Website & Dashboard** - A full-stack React application that serves as the landing page and user management interface
+2. **Browser Extension** - A Chrome extension that allows users to add custom features to any website through simple requests
+3. **AI Service Backend** - API endpoints that process feature requests and generate code using AI
+
+The platform enables users to transform any website by simply describing what they want, like adding dark mode or removing ads. The AI service analyzes the website's structure and generates code that matches the site's existing style.
 
 ## System Architecture
 
@@ -29,6 +34,21 @@ AskDunzo is a browser extension marketing website built as a full-stack React ap
 
 ## Key Components
 
+### Browser Extension Architecture
+- **Manifest**: Chrome Extension Manifest V3 with broad host permissions
+- **Content Script**: Injects floating button and feature code into websites
+- **Background Service Worker**: Manages API communication and authentication
+- **Popup Interface**: Extension management UI with feature toggles
+- **Storage**: Chrome storage API for persisting user features per domain
+- **Security**: Code validation and sandboxing before injection
+
+### AI Feature Generation Pipeline
+1. **Context Capture**: Extension captures DOM, CSS, and page metadata
+2. **Request Processing**: Natural language request sent to AI service
+3. **Code Generation**: AI analyzes context and generates matching code
+4. **Validation**: Security checks for malicious patterns
+5. **Injection**: Safe code injected into the page with proper styling
+
 ### Authentication System
 - **Provider**: Replit Auth integration with OIDC
 - **Session Storage**: PostgreSQL-backed sessions using connect-pg-simple
@@ -40,6 +60,7 @@ AskDunzo is a browser extension marketing website built as a full-stack React ap
 - **User Dashboard**: Authenticated user interface
 - **Navigation**: Responsive navigation with smooth scrolling
 - **UI System**: Hand-drawn aesthetic with black/white color scheme
+- **Extension Install Guide**: Step-by-step installation instructions
 
 ### Design System
 - **Typography**: Patrick Hand SC for headings, Inter for body text
@@ -103,6 +124,21 @@ AskDunzo is a browser extension marketing website built as a full-stack React ap
 Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
+
+### July 02, 2025 - AskDunzo Product Implementation
+- ✓ Created Chrome browser extension with manifest v3
+- ✓ Implemented content script with floating button UI
+- ✓ Built popup interface for extension management
+- ✓ Added background service worker for API communication
+- ✓ Implemented AI feature generation API endpoint
+- ✓ Created mock feature generators for dark mode and ad blocking
+- ✓ Built extension packaging script
+- ✓ Added installation guide page with step-by-step instructions
+- ✓ Updated home page with extension download link
+- → Pending: Full AI integration with OpenAI/Gemini
+- → Pending: PC application (Electron) version
+- → Pending: WebSquare marketplace integration
+- → Pending: Chrome Web Store submission
 
 ### July 02, 2025 - Back-End Implementation
 - ✓ Expanded database schema with subscription, feature request, and WebSquare tables

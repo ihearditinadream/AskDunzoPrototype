@@ -437,6 +437,199 @@ Generate only the JavaScript code without any markdown formatting or explanation
     }
   });
 
+  // ==================== AI Feature Generation Routes ====================
+  
+  // Helper function to generate feature code
+  async function generateFeatureCode(request: string, context: any) {
+    // For now, return mock responses based on common requests
+    // TODO: Integrate with OpenAI/Gemini API when API key is provided
+    
+    const lowerRequest = request.toLowerCase();
+    
+    // Dark mode feature
+    if (lowerRequest.includes('dark mode') || lowerRequest.includes('dark theme')) {
+      return {
+        request: request,
+        css: `
+/* AskDunzo Generated Dark Mode */
+.askdunzo-dark-mode {
+  filter: invert(1) hue-rotate(180deg);
+  background: #1a1a1a !important;
+}
+
+.askdunzo-dark-mode img,
+.askdunzo-dark-mode video,
+.askdunzo-dark-mode iframe {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.askdunzo-dark-toggle {
+  position: fixed;
+  top: 20px;
+  right: 80px;
+  z-index: 9999;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.askdunzo-dark-toggle:hover {
+  background: #333;
+}`,
+        html: `<button class="askdunzo-dark-toggle" id="askdunzo-dark-toggle">🌙 Dark</button>`,
+        js: `
+const darkToggle = document.getElementById('askdunzo-dark-toggle');
+const body = document.body;
+
+// Check saved state
+const isDark = localStorage.getItem('askdunzo-dark-mode') === 'true';
+if (isDark) {
+  body.classList.add('askdunzo-dark-mode');
+  darkToggle.textContent = '☀️ Light';
+}
+
+darkToggle.addEventListener('click', () => {
+  const isDark = body.classList.toggle('askdunzo-dark-mode');
+  localStorage.setItem('askdunzo-dark-mode', isDark);
+  darkToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+});`,
+        injectionPoint: 'body',
+        injectionMethod: 'append'
+      };
+    }
+    
+    // Remove ads feature
+    if (lowerRequest.includes('remove ads') || lowerRequest.includes('block ads')) {
+      return {
+        request: request,
+        css: `
+/* AskDunzo Ad Blocker */
+[class*="ad-"],
+[class*="ads-"],
+[class*="advertisement"],
+[id*="ad-"],
+[id*="ads-"],
+[id*="advertisement"],
+.sponsored,
+.promotion,
+.banner-ad {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+}`,
+        js: `
+// Remove common ad elements
+const adSelectors = [
+  '[class*="ad-"]',
+  '[class*="ads-"]',
+  '[id*="ad-"]',
+  '[id*="ads-"]',
+  '.sponsored',
+  '.promotion'
+];
+
+adSelectors.forEach(selector => {
+  document.querySelectorAll(selector).forEach(el => {
+    el.style.display = 'none';
+  });
+});
+
+// Monitor for new ads
+const observer = new MutationObserver(() => {
+  adSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.style.display !== 'none') {
+        el.style.display = 'none';
+      }
+    });
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });`
+      };
+    }
+    
+    // Default: Return a simple notification
+    return {
+      request: request,
+      js: `
+console.log('AskDunzo: Feature "${request}" is being processed.');
+alert('This feature requires AI processing. Please ensure you have set up the OpenAI API key in the backend.');`
+    };
+  }
+  
+  // Generate feature for browser extension
+  app.post('/api/v1/features/generate', isAuthenticated, async (req: Request, res: Response) => {
+    try {
+      const user = await getCurrentUser(req);
+      if (!user) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
+
+      // Check subscription limits for free tier
+      if (user.subscriptionTier === 'free') {
+        const userFeatures = await storage.getUserFeatureRequests(user.id, 1000, 0);
+        const thisMonthFeatures = userFeatures.filter(f => {
+          const createdDate = new Date(f.createdAt);
+          const now = new Date();
+          return createdDate.getMonth() === now.getMonth() && 
+                 createdDate.getFullYear() === now.getFullYear();
+        });
+
+        if (thisMonthFeatures.length >= 3) {
+          return res.status(403).json({ 
+            message: 'Free tier limit reached. Upgrade to Premium for unlimited features.',
+            requiresUpgrade: true 
+          });
+        }
+      }
+
+      const { request, context } = req.body;
+      
+      if (!request || !context) {
+        return res.status(400).json({ message: 'Request and context are required' });
+      }
+
+      // Create a feature request record
+      const featureRequest = await storage.createFeatureRequest({
+        userId: user.id,
+        websiteUrl: context.url,
+        featureDescription: request
+      });
+
+      // Generate the feature code using AI
+      try {
+        const generatedFeature = await generateFeatureCode(request, context);
+        
+        // Update the feature request with generated code
+        await storage.updateFeatureRequestStatus(
+          featureRequest.id, 
+          'completed', 
+          JSON.stringify(generatedFeature)
+        );
+
+        res.json({ 
+          success: true, 
+          feature: generatedFeature,
+          featureRequestId: featureRequest.id 
+        });
+      } catch (error) {
+        // Update status to failed
+        await storage.updateFeatureRequestStatus(featureRequest.id, 'failed');
+        throw error;
+      }
+    } catch (error) {
+      console.error('Error generating feature:', error);
+      res.status(500).json({ message: 'Failed to generate feature' });
+    }
+  });
+
   // ==================== WebSquare Marketplace Routes ====================
   
   // List WebSquare features

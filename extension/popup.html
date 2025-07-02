@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AskDunzo</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <img src="icons/icon-32.png" alt="AskDunzo" class="logo">
+      <div class="header-text">
+        <h1>AskDunzo</h1>
+        <p>Keep I.T. Simple</p>
+      </div>
+    </div>
+
+    <!-- Auth Section -->
+    <div id="auth-section" class="auth-section">
+      <!-- Content will be dynamically inserted -->
+    </div>
+
+    <!-- Quick Actions -->
+    <div id="quick-actions" class="quick-actions" style="display: none;">
+      <h2>Quick Actions</h2>
+      <button class="action-btn" id="add-feature-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Add Feature to This Page
+      </button>
+      <button class="action-btn" id="manage-features-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+        </svg>
+        Manage Features
+      </button>
+    </div>
+
+    <!-- Features List -->
+    <div id="features-section" class="features-section" style="display: none;">
+      <h2>Active Features</h2>
+      <div id="features-list" class="features-list">
+        <!-- Features will be dynamically inserted -->
+      </div>
+    </div>
+
+    <!-- Subscription Status -->
+    <div id="subscription-status" class="subscription-status" style="display: none;">
+      <!-- Subscription info will be dynamically inserted -->
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <a href="#" id="settings-link">Settings</a>
+      <a href="https://askdunzo.com" target="_blank">Dashboard</a>
+      <a href="#" id="help-link">Help</a>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

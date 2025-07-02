@@ -57,12 +57,16 @@ export default function Home() {
               Download the AskDunzo extension to get started.
             </p>
             <div className="flex space-x-4">
-              <Button className="bg-black text-white hover:bg-gray-800">
-                Download Extension
-              </Button>
-              <Button variant="outline" className="border-2 border-black">
-                View Dashboard
-              </Button>
+              <a href="/install-extension">
+                <Button className="bg-black text-white hover:bg-gray-800">
+                  Download & Install Extension
+                </Button>
+              </a>
+              <a href="/dashboard">
+                <Button variant="outline" className="border-2 border-black">
+                  View Dashboard
+                </Button>
+              </a>
             </div>
           </CardContent>
         </Card>

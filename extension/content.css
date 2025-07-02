@@ -1,0 +1,302 @@
+/* AskDunzo Content Script Styles */
+
+/* Floating button */
+#askdunzo-floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background-color: #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 999999;
+  animation: askdunzo-fade-in 0.3s ease;
+}
+
+#askdunzo-floating-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+#askdunzo-floating-button:active {
+  transform: scale(0.95);
+}
+
+/* Input container */
+#askdunzo-input-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 400px;
+  background: white;
+  border: 3px solid black;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 999998;
+  animation: askdunzo-slide-up 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Hand-drawn border effect */
+#askdunzo-input-container::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 3px solid black;
+  border-radius: 12px;
+  background: transparent;
+  z-index: -1;
+  transform: rotate(-0.5deg);
+}
+
+/* Input header */
+.askdunzo-input-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 2px solid #e5e5e5;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.askdunzo-input-header img {
+  width: 24px;
+  height: 24px;
+}
+
+.askdunzo-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.askdunzo-close:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+
+/* Input field */
+.askdunzo-input-field {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  resize: none;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: inherit;
+  outline: none;
+}
+
+.askdunzo-input-field:focus {
+  outline: 2px solid black;
+  outline-offset: -2px;
+}
+
+/* Input actions */
+.askdunzo-input-actions {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-top: 2px solid #e5e5e5;
+}
+
+/* Buttons */
+.askdunzo-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.askdunzo-btn-primary {
+  background: black;
+  color: white;
+}
+
+.askdunzo-btn-primary:hover {
+  background: #333;
+}
+
+.askdunzo-btn-secondary {
+  background: white;
+  color: black;
+}
+
+.askdunzo-btn-secondary:hover {
+  background: #f5f5f5;
+}
+
+/* Loading state */
+.askdunzo-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.askdunzo-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f0f0f0;
+  border-top-color: black;
+  border-radius: 50%;
+  animation: askdunzo-spin 0.8s linear infinite;
+}
+
+/* Notifications */
+.askdunzo-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 20px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 999999;
+  animation: askdunzo-slide-in 0.3s ease;
+  transition: opacity 0.3s ease;
+  max-width: 320px;
+}
+
+.askdunzo-notification-success {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.askdunzo-notification-error {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Animations */
+@keyframes askdunzo-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes askdunzo-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes askdunzo-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes askdunzo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  #askdunzo-input-container {
+    background: #1a1a1a;
+    border-color: #333;
+    color: #fff;
+  }
+  
+  #askdunzo-input-container::before {
+    border-color: #333;
+  }
+  
+  .askdunzo-input-header {
+    border-bottom-color: #333;
+  }
+  
+  .askdunzo-input-field {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  
+  .askdunzo-input-field:focus {
+    outline-color: #666;
+  }
+  
+  .askdunzo-input-actions {
+    border-top-color: #333;
+  }
+  
+  .askdunzo-btn-secondary {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #666;
+  }
+  
+  .askdunzo-btn-secondary:hover {
+    background: #2a2a2a;
+  }
+  
+  .askdunzo-close {
+    color: #aaa;
+  }
+  
+  .askdunzo-close:hover {
+    background: #2a2a2a;
+    color: #fff;
+  }
+  
+  .askdunzo-notification {
+    background: #1a1a1a;
+    color: #fff;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  #askdunzo-input-container {
+    width: calc(100vw - 40px);
+    right: 20px;
+    left: 20px;
+  }
+}

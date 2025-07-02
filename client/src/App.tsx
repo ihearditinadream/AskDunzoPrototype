@@ -11,6 +11,7 @@ import FeatureRequest from "@/pages/feature-request";
 import FeatureHistory from "@/pages/feature-history";
 import DataSharing from "@/pages/data-sharing";
 import Subscription from "@/pages/subscription";
+import ExtensionInstall from "@/pages/extension-install";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,8 +30,10 @@ function Router() {
           <Route path="/dashboard/data-sharing" component={DataSharing} />
           <Route path="/dashboard/subscription" component={Subscription} />
           <Route path="/home" component={Home} />
+          <Route path="/install-extension" component={ExtensionInstall} />
         </>
       )}
+      <Route path="/install-extension" component={ExtensionInstall} />
       <Route component={NotFound} />
     </Switch>
   );

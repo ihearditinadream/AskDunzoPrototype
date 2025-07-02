@@ -11,9 +11,9 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 fade-in">
-          <h2 className="font-hand text-5xl md:text-6xl font-bold text-black mb-6">Choose Your Plan</h2>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-8">
+        <div className="text-center mb-12 md:mb-16 fade-in">
+          <h2 className="font-hand text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4 md:mb-6">Choose Your Plan</h2>
+          <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto mb-6 md:mb-8 px-4 sm:px-0">
             Start with our free plan or unlock unlimited power with Premium.
           </p>
 
@@ -38,7 +38,7 @@ export default function PricingSection() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {/* Free Plan */}
           <div className="pricing-card bg-white p-8 fade-in">
             <div className="text-center mb-8">

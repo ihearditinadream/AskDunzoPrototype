@@ -4,9 +4,9 @@ export default function WebSquareSection() {
   return (
     <section id="websquare" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto text-center">
-        <div className="mb-16 fade-in">
-          <h2 className="font-hand text-5xl md:text-6xl font-bold text-black mb-6">WebSquare Marketplace</h2>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+        <div className="mb-12 md:mb-16 fade-in">
+          <h2 className="font-hand text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4 md:mb-6">WebSquare Marketplace</h2>
+          <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto px-4 sm:px-0">
             Browse, share, and install custom features created by the community.
           </p>
         </div>
@@ -21,7 +21,7 @@ export default function WebSquareSection() {
         </div>
 
         {/* Feature Preview */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           <div className="hand-drawn-border bg-white p-8 text-center fade-in hover:transform hover:-translate-y-2 transition-transform duration-300">
             <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-white text-2xl">👥</span>

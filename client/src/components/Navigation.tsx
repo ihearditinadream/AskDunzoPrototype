@@ -101,8 +101,10 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4">
+        <div className={`md:hidden border-t border-gray-200 overflow-hidden transition-all duration-300 ease-out ${
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="py-4">
             <div className="flex flex-col space-y-4">
               <a href="/download" className="px-4 relative group">
                 <div className="absolute inset-0 mx-4 bg-black rounded-lg transform rotate-1 group-hover:rotate-2 transition-transform"></div>
@@ -147,7 +149,7 @@ export default function Navigation() {
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

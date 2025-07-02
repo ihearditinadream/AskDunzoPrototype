@@ -6,9 +6,9 @@ export default function DataSharingSection() {
   return (
     <section id="data-sharing" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 fade-in">
-          <h2 className="font-hand text-5xl md:text-6xl font-bold text-black mb-6">Get Paid For Your Data. Seriously.</h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+        <div className="text-center mb-12 md:mb-16 fade-in">
+          <h2 className="font-hand text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 md:mb-6 px-4 sm:px-0">Get Paid For Your Data. Seriously.</h2>
+          <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto px-4 sm:px-0">
             We believe your data has value. Join our program and earn cash while helping improve AskDunzo for everyone.
           </p>
         </div>

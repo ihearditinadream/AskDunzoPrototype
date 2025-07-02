@@ -1,0 +1,150 @@
+AskDunzo Product: AI Service & Client Application PRD
+1.0 Introduction & Core Vision
+This document outlines the technical and functional requirements for the AskDunzo product itself: the client-side applications (Browser Extension, PC Application) and the core AI service that powers them.
+
+The product's vision is to act as a dynamic, intelligent layer over existing digital experiences. It empowers users to modify any website or their PC's functionality through simple, natural language requests. The result should be a seamless integration that feels native to the host environment, as if the requested feature was always there. The system functions like an on-demand, AI-powered developer that understands context, writes code, and implements solutions in real-time.
+
+2.0 High-Level Architecture
+The product operates on a client-server model, composed of two primary components: the Client-Side Agent (what the user installs) and the Dunzo AI Service (the cloud-based brain).
+
+Client-Side Agent (Browser Extension / PC App):
+
+Responsibilities:
+
+Provide the user interface (the text box for requests).
+
+Capture the context of the user's environment (e.g., the current website's HTML DOM, CSS, and state).
+
+Send the user's request and the captured context to the Dunzo AI Service.
+
+Receive the generated code snippet from the AI service.
+
+Securely inject and execute the code to implement the feature.
+
+Manage the lifecycle of active features (storing them, reapplying them, handling updates).
+
+Dunzo AI Service (Cloud Backend):
+
+Responsibilities:
+
+Receive the request and context from the client agent.
+
+Execute a multi-step AI pipeline to understand, plan, and generate the required code.
+
+Validate and sanitize the generated code for security and performance.
+
+Return the final, safe-to-execute code snippet to the client agent.
+
+3.0 The Core AI Feature Generation Pipeline
+This pipeline is the "magic" of the product. When a user makes a request (e.g., "Add a dark mode button to this site"), the following sequence is initiated:
+
+Step 1: Context Ingestion & Analysis (Client-Side Agent)
+
+The agent captures a snapshot of the current environment.
+
+For Websites: This includes the full HTML DOM structure, the URLs of loaded CSS stylesheets, and computed styles of key elements.
+
+For PC: This includes the active application, window handles, and available OS-level accessibility information.
+
+The agent sends the user's natural language request along with this context payload to the Dunzo AI Service via a secure API call.
+
+Step 2: Intent Recognition & Strategic Planning (AI Service)
+
+A high-level Natural Language Understanding (NLU) model analyzes the user's request to determine their core intent.
+
+It then formulates a high-level strategic plan.
+
+Request: "Add a dark mode button to Instagram."
+
+Recognized Intent: Create a UI toggle that alters the site's color scheme.
+
+Strategic Plan:
+
+Analyze Style: Identify the site's primary background, text, link, and accent colors from the provided CSS.
+
+Generate CSS: Create a new set of CSS rules that inverts or darkens the identified colors (e.g., .dunzo-dark-mode body { background-color: #1a1a1a; color: #ffffff; }).
+
+Generate HTML: Create the HTML for a <button> element.
+
+Style Button: Analyze existing buttons on the page to determine the correct CSS classes, or generate new styles that match the site's aesthetic (border-radius, font, padding, etc.).
+
+Generate JavaScript: Write a JavaScript snippet that:
+
+Adds an event listener to the new button.
+
+On click, toggles a class (e.g., dunzo-dark-mode) on the <body> element.
+
+Determine Injection Point: Identify the best location in the DOM to place the new button (e.g., inside the main header <div> next to other icons).
+
+Step 3: Code Generation (AI Service)
+
+The strategic plan and the original context are passed to a specialized, fine-tuned code-generation LLM.
+
+This model writes the precise HTML, CSS, and JavaScript code required to execute the plan. It is trained to be context-aware, meaning it will actively try to use existing CSS classes and match the code style of the target environment to ensure the result feels native.
+
+Step 4: Security Validation & Sanitization (AI Service)
+
+This is a critical, non-skippable step. The generated code is executed in a secure, isolated sandbox environment (e.g., using WebAssembly or a restricted container).
+
+The sandbox checks for:
+
+Malicious patterns (e.g., attempts to access sensitive user data, make unauthorized network requests).
+
+Performance issues (e.g., infinite loops, memory leaks).
+
+Broken code that could crash the page.
+
+Any code that fails validation is either discarded or sent back for regeneration with feedback. Only 100% validated code proceeds.
+
+Step 5: Delivery & Injection (Client-Side Agent)
+
+The validated, clean code snippet is sent back to the client agent.
+
+The agent carefully injects the code into the live environment.
+
+CSS is added to the document's <head>.
+
+HTML is inserted at the determined injection point.
+
+JavaScript is executed to attach event listeners and activate the feature.
+
+4.0 PC Application Functionality
+Modifying the PC desktop is a more advanced task requiring deeper system integration.
+
+Mechanism: The PC Application will require elevated permissions upon installation to interact with the operating system.
+
+Request Handling: When a user makes a PC-level request (e.g., "Create a shortcut to minimize all windows"), the AI pipeline adapts:
+
+Intent: The intent is mapped to an OS-level action.
+
+Code Generation: Instead of web code, the AI generates a script (e.g., PowerShell on Windows, AppleScript or Shell Script on macOS) or code that utilizes OS-specific APIs.
+
+Execution: The client agent executes this script securely to create the shortcut or perform the requested action.
+
+5.0 Advanced Features
+Adaptive Feature Maintenance (Premium Feature):
+
+When a feature is created, the agent stores a "fingerprint" of the DOM elements it depends on (e.g., the ID and class of the header where a button was placed).
+
+When the user revisits the site, the agent checks if the fingerprint is still valid.
+
+If the website has been updated and the fingerprint is broken, the agent automatically triggers the AI pipeline to regenerate the feature using the new site structure, seamlessly "healing" it.
+
+Creator Tools (IDE):
+
+The "feature-building service" for WebSquare creators will be a web-based IDE.
+
+It will allow creators to enter a natural language prompt, see the full generated code (HTML/CSS/JS), manually edit and refine it, and test it in a sandboxed preview before publishing to the WebSquare marketplace. This provides a powerful combination of AI-driven speed and human-driven precision.
+
+6.0 Technology Stack & Models
+Client-Side Agent:
+
+Browser Extension: Built with JavaScript, HTML, and CSS, following standard extension guidelines for Chrome, Firefox, etc.
+
+PC Application: Electron (using JavaScript) is a strong candidate for cross-platform compatibility. For deeper OS integration, native development may be required (Swift/Objective-C for macOS, .NET/C# for Windows).
+
+Dunzo AI Service:
+
+AI Models: The service will leverage multiple state-of-the-art Large Language Models. A model like Google's Gemini is ideal due to its strong reasoning, multi-modal understanding (text and code structure), and advanced code generation capabilities. Different models may be used for the NLU/planning stage versus the final code generation stage.
+
+Backend: The service will be built on the Python stack defined in the back-end PRD (askdunzo_prd_backend), using Flask/FastAPI to serve the APIs and Celery for asynchronous task processing.

@@ -107,17 +107,25 @@ export default function HeroSection() {
               </div>
 
               {/* AskDunzo Interface Overlay */}
-              <div className="relative bg-white p-8">
-                {/* AskDunzo Icon - appears in step 1 */}
+              <div className="relative bg-white p-8 min-h-[400px]">
+                {/* AskDunzo Icon - centered in step 1, moves to corner in step 2+ */}
                 {demoStep >= 1 && (
-                  <div className={`absolute top-4 right-4 transition-all duration-500 ${
-                    demoStep >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                  <div className={`transition-all duration-700 ${
+                    demoStep === 1 
+                      ? 'absolute inset-0 flex justify-center items-center' 
+                      : 'absolute top-4 right-4'
                   }`}>
-                    <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-colors">
+                    <div className={`bg-black rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-all ${
+                      demoStep === 1 
+                        ? 'w-20 h-20 animate-pulse' 
+                        : 'w-10 h-10'
+                    }`}>
                       <img 
                         src={logoBlack} 
                         alt="AskDunzo" 
-                        className="w-6 h-6 object-contain invert"
+                        className={`object-contain invert transition-all ${
+                          demoStep === 1 ? 'w-12 h-12' : 'w-6 h-6'
+                        }`}
                       />
                     </div>
                   </div>
@@ -125,28 +133,30 @@ export default function HeroSection() {
 
                 {/* Demo Input Box - appears in step 2 */}
                 {demoStep >= 2 && (
-                  <div className={`mb-8 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 transition-all duration-500 ${
+                  <div className={`transition-all duration-500 ${
                     demoStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
                   }`}>
-                    <div className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="What would you like to add or change on this site?"
-                        value={inputText}
-                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 bg-white"
-                        readOnly
-                      />
-                      {demoStep === 3 && showCursor && (
-                        <span className="absolute right-8 text-gray-700 animate-pulse">|</span>
+                    <div className="mb-8 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+                      <div className="flex items-center relative">
+                        <input
+                          type="text"
+                          placeholder="What would you like to add or change on this site?"
+                          value={inputText}
+                          className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 bg-white pr-12"
+                          readOnly
+                        />
+                        {demoStep === 3 && showCursor && (
+                          <span className="absolute right-4 text-gray-700 animate-pulse">|</span>
+                        )}
+                      </div>
+                      
+                      {/* Processing indicator - appears in step 4 */}
+                      {demoStep === 4 && (
+                        <div className="mt-3 text-sm text-gray-500 animate-pulse">
+                          ✨ Processing your request...
+                        </div>
                       )}
                     </div>
-                    
-                    {/* Processing indicator - appears in step 4 */}
-                    {demoStep === 4 && (
-                      <div className="mt-2 text-sm text-gray-500 animate-pulse">
-                        ✨ Processing your request...
-                      </div>
-                    )}
                   </div>
                 )}
 

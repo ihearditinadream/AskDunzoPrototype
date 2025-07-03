@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import logoBlack from "@assets/unnamed (1)_1751431724399.jpg";
+import { SiGooglechrome, SiFirefox } from "react-icons/si";
 
 export default function HeroSection() {
   const [demoStep, setDemoStep] = useState(0);
@@ -220,35 +221,11 @@ export default function HeroSection() {
           {/* Compatibility Icons */}
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-500">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded flex items-center justify-center">
-                <svg className="w-6 h-6" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" fill="#4285F4"/>
-                  <path fill="#34A853" d="M12 12L12 2A10 10 0 0 1 22 12H12z"/>
-                  <path fill="#FBBC04" d="M12 12L2 12A10 10 0 0 1 7.05 3.05L12 12z"/>
-                  <path fill="#EA4335" d="M12 12L16.95 20.95A10 10 0 0 1 7.05 20.95L12 12z"/>
-                  <circle cx="12" cy="12" r="4" fill="white"/>
-                </svg>
-              </div>
+              <SiGooglechrome className="w-6 h-6 text-[#4285F4]" />
               <span className="text-sm">Chrome</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded flex items-center justify-center">
-                <svg className="w-6 h-6" viewBox="0 0 24 24">
-                  <defs>
-                    <linearGradient id="firefoxGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FF9500"/>
-                      <stop offset="100%" stopColor="#FF5E00"/>
-                    </linearGradient>
-                    <linearGradient id="firefoxGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFDE00"/>
-                      <stop offset="100%" stopColor="#FF9500"/>
-                    </linearGradient>
-                  </defs>
-                  <circle cx="12" cy="12" r="10" fill="url(#firefoxGradient1)"/>
-                  <path d="M16.4 7.2c-.8-1.2-2.1-2-3.6-2.3-.4-.1-.8-.1-1.2-.1-2.2 0-4.1 1.3-5 3.2-.3.6-.5 1.3-.5 2 0 .3 0 .6.1.9.2 1.7 1.2 3.1 2.6 3.9.7.4 1.5.6 2.3.6 2.7 0 4.9-2.2 4.9-4.9 0-.8-.2-1.5-.6-2.3z" fill="url(#firefoxGradient2)"/>
-                  <ellipse cx="11" cy="11" rx="3" ry="3.5" fill="#FF5E00" transform="rotate(-20 11 11)"/>
-                </svg>
-              </div>
+              <SiFirefox className="w-6 h-6 text-[#FF7139]" />
               <span className="text-sm">Firefox</span>
             </div>
             <div className="flex items-center space-x-2">

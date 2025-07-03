@@ -98,22 +98,29 @@
   0% {
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: 10%;
+    left: 70%;
+    transform: translate(-50%, -50%);
   }
   80% {
-    top: -32px;
-    right: 16px;
+    top: -25px;
     left: auto;
+    right: 20px;
+    transform: translate(0, 0);
   }
   90% {
-    top: -32px;
-    right: 16px;
+    top: -25px;
     left: auto;
+    right: 20px;
     transform: scale(0.8);
   }
   100% {
-    top: -32px;
-    right: 16px;
+    top: -25px;
     left: auto;
+    right: 20px;
     transform: scale(1);
   }
 }

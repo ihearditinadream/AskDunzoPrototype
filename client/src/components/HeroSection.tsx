@@ -169,16 +169,16 @@ export default function HeroSection() {
               </div>
 
               {/* Extension Icon in Browser Toolbar */}
-              <div className="absolute -top-9 right-4 z-50">
-                <div className={`w-8 h-8 rounded flex items-center justify-center transition-all duration-300 cursor-pointer ${
+              <div className="absolute -top-11 right-4 z-50">
+                <div className={`w-9 h-9 rounded flex items-center justify-center transition-all duration-300 cursor-pointer ${
                   demoStep === 0 ? 'bg-gray-100 hover:bg-gray-200' : 
-                  demoStep === 1 ? 'bg-black shadow-lg scale-110' : 
+                  demoStep === 1 ? 'bg-black shadow-lg scale-110 animate-pulse' : 
                   'bg-gray-900'
                 }`}>
                   <img 
                     src={logoWhite} 
                     alt="Dunzo" 
-                    className={`w-5 h-5 object-contain ${
+                    className={`w-6 h-6 object-contain ${
                       demoStep >= 1 ? 'invert' : ''
                     }`}
                   />
@@ -191,14 +191,12 @@ export default function HeroSection() {
                 {demoStep === 1 && (
                   <div className="absolute pointer-events-none z-[60]" style={{
                     animation: 'moveMouse 1.5s ease-in-out forwards',
-                    top: '50%',
-                    left: '50%'
                   }}>
-                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                      <path d="M1 1L1 11L3 9L5 13L7 12L5 8L9 8L1 1Z" 
+                    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                      <path d="M1 1L1 14L4 11L7 17L10 15L7 9L13 9L1 1Z" 
                         fill="black" 
                         stroke="white" 
-                        strokeWidth="0.5"
+                        strokeWidth="1"
                       />
                     </svg>
                   </div>

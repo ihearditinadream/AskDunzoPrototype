@@ -211,123 +211,339 @@ export default function HeroSection() {
 
                 {/* Mock Website Content - Different for each animation */}
                 {currentAnimation === 1 && (
-                  <div className={`p-6 rounded-lg transition-all duration-500 ${
-                    isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'
-                  } ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
-                    <div className="mb-4">
-                      <h2 className="text-2xl font-bold mb-2">My Blog</h2>
-                      <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                        Welcome to my blog where I share my thoughts and experiences...
-                      </p>
+                  <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* Blog Header */}
+                    <div className={`px-6 py-4 border-b transition-all duration-500 ${
+                      isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'
+                    }`}>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                            isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
+                          }`}>
+                            <span className="text-2xl">📝</span>
+                          </div>
+                          <div>
+                            <h1 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                              Tech Thoughts
+                            </h1>
+                            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                              A blog about web development
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Dark Mode Button */}
+                        {demoStep >= 5 && (
+                          <Button
+                            onClick={toggleDarkMode}
+                            className={`transition-all duration-500 transform ${
+                              demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
+                            } ${isDarkMode 
+                              ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300 shadow-lg' 
+                              : 'bg-gray-800 text-white hover:bg-gray-700 shadow-lg'
+                            } flex items-center gap-2`}
+                          >
+                            {isDarkMode ? (
+                              <>
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                                </svg>
+                                Light Mode
+                              </>
+                            ) : (
+                              <>
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                                </svg>
+                                Dark Mode
+                              </>
+                            )}
+                          </Button>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold mb-2">Latest Post</h3>
-                      <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                        Learn how to enhance your browsing experience...
-                      </p>
-                    </div>
+                    {/* Blog Content */}
+                    <div className={`p-6 transition-all duration-500 ${
+                      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+                    }`}>
+                      {/* Featured Post */}
+                      <article className={`rounded-xl p-6 mb-6 transition-all duration-500 ${
+                        isDarkMode ? 'bg-gray-900 shadow-xl' : 'bg-white shadow-md'
+                      }`}>
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className={`text-xs px-3 py-1 rounded-full ${
+                            isDarkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'
+                          }`}>
+                            Featured
+                          </span>
+                          <span className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                            5 min read
+                          </span>
+                        </div>
+                        <h2 className={`text-2xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                          The Future of Web Development
+                        </h2>
+                        <p className={`mb-4 leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                          Exploring the latest trends in modern web development, from AI-powered tools to 
+                          revolutionary frameworks that are changing how we build applications...
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className={`w-8 h-8 rounded-full ${
+                              isDarkMode ? 'bg-gradient-to-br from-purple-600 to-blue-600' : 'bg-gradient-to-br from-purple-500 to-blue-500'
+                            }`}></div>
+                            <div>
+                              <p className={`text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                Sarah Chen
+                              </p>
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                Jan 3, 2025
+                              </p>
+                            </div>
+                          </div>
+                          <button className={`text-sm font-medium ${
+                            isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                          }`}>
+                            Read more →
+                          </button>
+                        </div>
+                      </article>
 
-                    {/* Dark Mode Button (appears after demo) */}
-                    <div className="flex justify-end">
-                      {demoStep >= 5 && (
-                        <Button
-                          onClick={toggleDarkMode}
-                          className={`transition-all duration-500 transform ${
-                            demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
-                          } ${isDarkMode ? 'bg-yellow-500 text-black hover:bg-yellow-400' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
-                        >
-                          {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-                        </Button>
-                      )}
+                      {/* Recent Posts Grid */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className={`rounded-lg p-4 transition-all duration-500 ${
+                          isDarkMode ? 'bg-gray-900' : 'bg-white shadow-sm'
+                        }`}>
+                          <h3 className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            CSS Grid Mastery
+                          </h3>
+                          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            Advanced techniques for complex layouts
+                          </p>
+                        </div>
+                        <div className={`rounded-lg p-4 transition-all duration-500 ${
+                          isDarkMode ? 'bg-gray-900' : 'bg-white shadow-sm'
+                        }`}>
+                          <h3 className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            React Best Practices
+                          </h3>
+                          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            Write cleaner, more efficient code
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
 
                 {currentAnimation === 2 && (
-                  <div className={`p-4 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
-                    {/* YouTube Comments Section */}
-                    <div className="space-y-3">
-                      <h3 className="font-semibold text-lg mb-3">Comments</h3>
-                      
-                      {/* Sort Button */}
-                      {demoStep >= 5 && (
-                        <div className="mb-4">
+                  <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* YouTube Video Player */}
+                    <div className="bg-black p-2 mb-4">
+                      <div className="relative bg-gradient-to-br from-red-600 to-pink-600 rounded-lg aspect-video flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
+                        <svg className="w-16 h-16 text-white z-10" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                        </svg>
+                        <div className="absolute bottom-2 left-2 text-white text-xs bg-black bg-opacity-75 px-2 py-1 rounded">
+                          10:24
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Video Title and Info */}
+                    <div className="px-4 mb-4">
+                      <h2 className="font-bold text-lg mb-1">Amazing Tutorial: Learn React in 2025</h2>
+                      <p className="text-gray-600 text-sm">125K views • 2 days ago</p>
+                    </div>
+
+                    {/* Comments Section */}
+                    <div className="px-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-semibold text-base">1,234 Comments</h3>
+                        
+                        {/* Sort Button */}
+                        {demoStep >= 5 && (
                           <Button
                             onClick={() => setSortedComments(!sortedComments)}
                             className={`transition-all duration-500 transform ${
                               demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
-                            } bg-blue-600 text-white hover:bg-blue-700`}
+                            } bg-red-600 text-white hover:bg-red-700 shadow-lg flex items-center gap-2`}
                           >
-                            📊 Sort by Likes
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                            </svg>
+                            Sort by Likes
                           </Button>
-                        </div>
-                      )}
+                        )}
+                      </div>
                       
                       {/* Comments List */}
                       <div className={`flex flex-col gap-3 transition-all duration-700`}>
                         {sortedComments ? (
                           <>
-                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
-                              <div className="flex items-start gap-2">
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="flex-1">
-                                  <p className="font-medium text-sm">@musicfan</p>
-                                  <p className="text-sm text-gray-700">This is the best song ever! 🎵</p>
-                                  <p className="text-xs text-gray-500 mt-1">👍 1.2K likes</p>
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">
+                                M
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <p className="font-semibold text-sm">@musicfan</p>
+                                  <p className="text-xs text-gray-500">2 hours ago</p>
+                                </div>
+                                <p className="text-sm text-gray-800 mb-2">This is the best tutorial I've ever seen! The explanations are so clear 🎵</p>
+                                <div className="flex items-center gap-4">
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span className="font-semibold">1.2K</span>
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
+                                    </svg>
+                                    Reply
+                                  </button>
                                 </div>
                               </div>
                             </div>
-                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
-                              <div className="flex items-start gap-2">
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="flex-1">
-                                  <p className="font-medium text-sm">@viewer123</p>
-                                  <p className="text-sm text-gray-700">Who's watching in 2025?</p>
-                                  <p className="text-xs text-gray-500 mt-1">👍 856 likes</p>
+                            
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                                V
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <p className="font-semibold text-sm">@viewer123</p>
+                                  <p className="text-xs text-gray-500">1 day ago</p>
+                                </div>
+                                <p className="text-sm text-gray-800 mb-2">Who's watching in 2025? This content is still relevant!</p>
+                                <div className="flex items-center gap-4">
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span className="font-semibold">856</span>
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
+                                    </svg>
+                                    Reply
+                                  </button>
                                 </div>
                               </div>
                             </div>
-                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
-                              <div className="flex items-start gap-2">
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="flex-1">
-                                  <p className="font-medium text-sm">@cooluser</p>
-                                  <p className="text-sm text-gray-700">Thanks for the tutorial!</p>
-                                  <p className="text-xs text-gray-500 mt-1">👍 5 likes</p>
+                            
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
+                                C
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <p className="font-semibold text-sm">@cooluser</p>
+                                  <p className="text-xs text-gray-500">3 days ago</p>
+                                </div>
+                                <p className="text-sm text-gray-800 mb-2">Thanks for the tutorial! Finally understood hooks</p>
+                                <div className="flex items-center gap-4">
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span>5</span>
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
+                                    </svg>
+                                    Reply
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </>
                         ) : (
                           <>
-                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
-                              <div className="flex items-start gap-2">
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="flex-1">
-                                  <p className="font-medium text-sm">@cooluser</p>
-                                  <p className="text-sm text-gray-700">Thanks for the tutorial!</p>
-                                  <p className="text-xs text-gray-500 mt-1">👍 5 likes</p>
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
+                                C
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <p className="font-semibold text-sm">@cooluser</p>
+                                  <p className="text-xs text-gray-500">3 days ago</p>
+                                </div>
+                                <p className="text-sm text-gray-800 mb-2">Thanks for the tutorial! Finally understood hooks</p>
+                                <div className="flex items-center gap-4">
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span>5</span>
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
+                                    </svg>
+                                    Reply
+                                  </button>
                                 </div>
                               </div>
                             </div>
-                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
-                              <div className="flex items-start gap-2">
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="flex-1">
-                                  <p className="font-medium text-sm">@viewer123</p>
-                                  <p className="text-sm text-gray-700">Who's watching in 2025?</p>
-                                  <p className="text-xs text-gray-500 mt-1">👍 856 likes</p>
+                            
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                                V
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <p className="font-semibold text-sm">@viewer123</p>
+                                  <p className="text-xs text-gray-500">1 day ago</p>
+                                </div>
+                                <p className="text-sm text-gray-800 mb-2">Who's watching in 2025? This content is still relevant!</p>
+                                <div className="flex items-center gap-4">
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span className="font-semibold">856</span>
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
+                                    </svg>
+                                    Reply
+                                  </button>
                                 </div>
                               </div>
                             </div>
-                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
-                              <div className="flex items-start gap-2">
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="flex-1">
-                                  <p className="font-medium text-sm">@musicfan</p>
-                                  <p className="text-sm text-gray-700">This is the best song ever! 🎵</p>
-                                  <p className="text-xs text-gray-500 mt-1">👍 1.2K likes</p>
+                            
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">
+                                M
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <p className="font-semibold text-sm">@musicfan</p>
+                                  <p className="text-xs text-gray-500">2 hours ago</p>
+                                </div>
+                                <p className="text-sm text-gray-800 mb-2">This is the best tutorial I've ever seen! The explanations are so clear 🎵</p>
+                                <div className="flex items-center gap-4">
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span className="font-semibold">1.2K</span>
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
+                                    </svg>
+                                    Reply
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -339,49 +555,152 @@ export default function HeroSection() {
                 )}
 
                 {currentAnimation === 3 && (
-                  <div className={`p-4 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
-                    {/* Instagram Post */}
-                    <div className="max-w-sm mx-auto">
-                      {/* Post Header */}
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
-                        <div>
-                          <p className="font-medium text-sm">@photographer</p>
-                          <p className="text-xs text-gray-500">New York, NY</p>
+                  <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* Instagram Stories Bar */}
+                    <div className="px-4 py-3 bg-white border-b border-gray-200">
+                      <div className="flex gap-3 overflow-x-auto">
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                            <div className="w-full h-full bg-white rounded-full p-0.5">
+                              <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 to-pink-500"></div>
+                            </div>
+                          </div>
+                          <p className="text-xs text-center mt-1">Your Story</p>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                            <div className="w-full h-full bg-white rounded-full p-0.5">
+                              <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
+                            </div>
+                          </div>
+                          <p className="text-xs text-center mt-1">travel_pics</p>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                            <div className="w-full h-full bg-white rounded-full p-0.5">
+                              <div className="w-full h-full rounded-full bg-gradient-to-br from-green-400 to-blue-500"></div>
+                            </div>
+                          </div>
+                          <p className="text-xs text-center mt-1">foodie</p>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Instagram Post */}
+                    <div className="bg-white">
+                      {/* Post Header */}
+                      <div className="flex items-center justify-between px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <div className="relative">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                              <div className="w-full h-full bg-white rounded-full p-0.5">
+                                <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
+                                  P
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <p className="font-semibold text-sm">photographer</p>
+                            <p className="text-xs text-gray-500">Times Square, New York</p>
+                          </div>
+                        </div>
+                        <button className="text-gray-600">
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                          </svg>
+                        </button>
+                      </div>
                       
-                      {/* Image Placeholder */}
+                      {/* Image */}
                       <div className="relative">
-                        <div className="bg-gradient-to-br from-blue-400 to-purple-500 h-64 rounded-lg mb-3"></div>
+                        <div className="relative overflow-hidden bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400">
+                          <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+                          <div className="relative h-80 flex items-center justify-center">
+                            {/* Simulated city skyline */}
+                            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center gap-1 p-4">
+                              <div className="w-8 h-24 bg-white bg-opacity-20 rounded-t"></div>
+                              <div className="w-10 h-32 bg-white bg-opacity-20 rounded-t"></div>
+                              <div className="w-6 h-28 bg-white bg-opacity-20 rounded-t"></div>
+                              <div className="w-12 h-40 bg-white bg-opacity-20 rounded-t"></div>
+                              <div className="w-8 h-36 bg-white bg-opacity-20 rounded-t"></div>
+                              <div className="w-10 h-30 bg-white bg-opacity-20 rounded-t"></div>
+                            </div>
+                            <div className="absolute top-8 right-8 w-16 h-16 bg-yellow-300 rounded-full blur-xl opacity-70"></div>
+                          </div>
+                        </div>
                         
                         {/* Download Button - appears after demo */}
                         {demoStep >= 5 && (
-                          <div className="absolute bottom-2 right-2">
+                          <div className="absolute bottom-4 right-4">
                             <Button
                               onClick={() => setDownloadButtonAdded(true)}
                               className={`transition-all duration-500 transform ${
                                 demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
-                              } ${downloadButtonAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-purple-600 hover:bg-purple-700'} text-white`}
+                              } ${downloadButtonAdded 
+                                ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg' 
+                                : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg'
+                              } text-white flex items-center gap-2`}
                             >
-                              {downloadButtonAdded ? '✓ Download Added!' : '⬇ Download'}
+                              {downloadButtonAdded ? (
+                                <>
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                  Download Added!
+                                </>
+                              ) : (
+                                <>
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                  </svg>
+                                  Download
+                                </>
+                              )}
                             </Button>
                           </div>
                         )}
                       </div>
                       
                       {/* Post Actions */}
-                      <div className="flex gap-4 mb-2">
-                        <span className="text-2xl">❤️</span>
-                        <span className="text-2xl">💬</span>
-                        <span className="text-2xl">📤</span>
+                      <div className="px-4 py-3">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-4">
+                            <button className="hover:opacity-60 transition-opacity">
+                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              </svg>
+                            </button>
+                            <button className="hover:opacity-60 transition-opacity">
+                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                              </svg>
+                            </button>
+                            <button className="hover:opacity-60 transition-opacity">
+                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.632 4.316C18.114 15.938 18 15.482 18 15c0-.482.114-.938.316-1.342m0 2.684a3 3 0 110-2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z" transform="rotate(-30 12 12)" />
+                              </svg>
+                            </button>
+                          </div>
+                          <button className="hover:opacity-60 transition-opacity">
+                            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                            </svg>
+                          </button>
+                        </div>
+                        
+                        {/* Likes */}
+                        <p className="font-semibold text-sm mb-2">2,543 likes</p>
+                        
+                        {/* Caption */}
+                        <div className="space-y-1">
+                          <p className="text-sm">
+                            <span className="font-semibold">photographer</span> Golden hour in the city that never sleeps 🌆✨ The skyline looks magical during sunset!
+                          </p>
+                          <button className="text-gray-500 text-sm">View all 89 comments</button>
+                          <p className="text-xs text-gray-500 uppercase">2 hours ago</p>
+                        </div>
                       </div>
-                      
-                      {/* Post Caption */}
-                      <p className="text-sm">
-                        <span className="font-medium">@photographer</span> Beautiful sunset in the city 🌅
-                      </p>
-                      <p className="text-xs text-gray-500 mt-1">2 hours ago</p>
                     </div>
                   </div>
                 )}

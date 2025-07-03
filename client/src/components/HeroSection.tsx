@@ -8,6 +8,9 @@ export default function HeroSection() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [inputText, setInputText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const [currentAnimation, setCurrentAnimation] = useState(1); // 1: dark mode, 2: youtube, 3: instagram
+  const [sortedComments, setSortedComments] = useState(false);
+  const [downloadButtonAdded, setDownloadButtonAdded] = useState(false);
 
   useEffect(() => {
     const runAnimation = () => {
@@ -15,36 +18,75 @@ export default function HeroSection() {
       setDemoStep(0);
       setInputText("");
       setIsDarkMode(false);
+      setSortedComments(false);
+      setDownloadButtonAdded(false);
 
       // Animate the entire process
-      const animationSteps = [
-        { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
-        { delay: 2500, action: () => setDemoStep(2) }, // Show input box
-        { delay: 3500, action: () => setDemoStep(3) }, // Start typing
-        { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
-        { delay: 8000, action: () => setDemoStep(5) }, // Show dark mode button
-        { delay: 9500, action: () => setIsDarkMode(true) }, // Auto-toggle dark mode
-        { delay: 11000, action: () => setIsDarkMode(false) }, // Toggle back
-      ];
+      let animationSteps: { delay: number; action: () => void }[] = [];
+      
+      if (currentAnimation === 1) {
+        // Dark mode animation
+        animationSteps = [
+          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
+          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 8000, action: () => setDemoStep(5) }, // Show dark mode button
+          { delay: 9500, action: () => setIsDarkMode(true) }, // Auto-toggle dark mode
+          { delay: 11000, action: () => setIsDarkMode(false) }, // Toggle back
+        ];
+      } else if (currentAnimation === 2) {
+        // YouTube comments animation
+        animationSteps = [
+          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
+          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 8000, action: () => setDemoStep(5) }, // Show sort button
+          { delay: 9500, action: () => setSortedComments(true) }, // Sort comments
+          { delay: 11000, action: () => setSortedComments(false) }, // Reset
+        ];
+      } else if (currentAnimation === 3) {
+        // Instagram download animation
+        animationSteps = [
+          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
+          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 8000, action: () => setDemoStep(5) }, // Show download button
+          { delay: 9500, action: () => setDownloadButtonAdded(true) }, // Show added state
+        ];
+      }
 
       const timers = animationSteps.map(step => 
         setTimeout(step.action, step.delay)
       );
 
-      // Schedule next animation cycle
-      const restartTimer = setTimeout(runAnimation, 13000);
+      // Move to next animation after this one completes
+      const nextAnimationTimer = setTimeout(() => {
+        setCurrentAnimation(prev => prev === 3 ? 1 : prev + 1);
+      }, 13000);
 
-      return [...timers, restartTimer];
+      return [...timers, nextAnimationTimer];
     };
 
     const timers = runAnimation();
     return () => timers.forEach(timer => clearTimeout(timer));
-  }, []);
+  }, [currentAnimation]);
 
   // Typing animation effect
   useEffect(() => {
     if (demoStep === 3) {
-      const targetText = "Add a dark mode button to this site!";
+      let targetText = "";
+      
+      if (currentAnimation === 1) {
+        targetText = "Add a dark mode button to this site!";
+      } else if (currentAnimation === 2) {
+        targetText = "Sort YouTube comments by likes";
+      } else if (currentAnimation === 3) {
+        targetText = "Add a download button to Instagram";
+      }
+      
       let currentIndex = 0;
       
       const typingInterval = setInterval(() => {
@@ -58,7 +100,7 @@ export default function HeroSection() {
 
       return () => clearInterval(typingInterval);
     }
-  }, [demoStep]);
+  }, [demoStep, currentAnimation]);
 
   // Cursor blink effect
   useEffect(() => {
@@ -103,7 +145,11 @@ export default function HeroSection() {
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <div className="flex-1 text-center text-sm text-gray-600">myblog.com</div>
+                <div className="flex-1 text-center text-sm text-gray-600">
+                  {currentAnimation === 1 && "myblog.com"}
+                  {currentAnimation === 2 && "youtube.com"}
+                  {currentAnimation === 3 && "instagram.com"}
+                </div>
               </div>
 
               {/* AskDunzo Interface Overlay */}
@@ -163,38 +209,182 @@ export default function HeroSection() {
                   </div>
                 )}
 
-                {/* Mock Website Content - positioned to avoid overlap */}
-                <div className={`${demoStep === 1 ? 'mt-0' : 'mt-0'} p-6 rounded-lg transition-all duration-500 ${
-                  isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'
-                } ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
-                  <div className="mb-4">
-                    <h2 className="text-2xl font-bold mb-2">My Blog</h2>
-                    <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                      Welcome to my blog where I share my thoughts and experiences...
-                    </p>
-                  </div>
+                {/* Mock Website Content - Different for each animation */}
+                {currentAnimation === 1 && (
+                  <div className={`p-6 rounded-lg transition-all duration-500 ${
+                    isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'
+                  } ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    <div className="mb-4">
+                      <h2 className="text-2xl font-bold mb-2">My Blog</h2>
+                      <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
+                        Welcome to my blog where I share my thoughts and experiences...
+                      </p>
+                    </div>
 
-                  <div className="mb-4">
-                    <h3 className="text-lg font-semibold mb-2">Latest Post</h3>
-                    <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                      Learn how to enhance your browsing experience...
-                    </p>
-                  </div>
+                    <div className="mb-4">
+                      <h3 className="text-lg font-semibold mb-2">Latest Post</h3>
+                      <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
+                        Learn how to enhance your browsing experience...
+                      </p>
+                    </div>
 
-                  {/* Dark Mode Button (appears after demo) */}
-                  <div className="flex justify-end">
-                    {demoStep >= 5 && (
-                      <Button
-                        onClick={toggleDarkMode}
-                        className={`transition-all duration-500 transform ${
-                          demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
-                        } ${isDarkMode ? 'bg-yellow-500 text-black hover:bg-yellow-400' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
-                      >
-                        {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-                      </Button>
-                    )}
+                    {/* Dark Mode Button (appears after demo) */}
+                    <div className="flex justify-end">
+                      {demoStep >= 5 && (
+                        <Button
+                          onClick={toggleDarkMode}
+                          className={`transition-all duration-500 transform ${
+                            demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
+                          } ${isDarkMode ? 'bg-yellow-500 text-black hover:bg-yellow-400' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
+                        >
+                          {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+                        </Button>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {currentAnimation === 2 && (
+                  <div className={`p-4 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* YouTube Comments Section */}
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-lg mb-3">Comments</h3>
+                      
+                      {/* Sort Button */}
+                      {demoStep >= 5 && (
+                        <div className="mb-4">
+                          <Button
+                            onClick={() => setSortedComments(!sortedComments)}
+                            className={`transition-all duration-500 transform ${
+                              demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
+                            } bg-blue-600 text-white hover:bg-blue-700`}
+                          >
+                            📊 Sort by Likes
+                          </Button>
+                        </div>
+                      )}
+                      
+                      {/* Comments List */}
+                      <div className={`flex flex-col gap-3 transition-all duration-700`}>
+                        {sortedComments ? (
+                          <>
+                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
+                              <div className="flex items-start gap-2">
+                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                <div className="flex-1">
+                                  <p className="font-medium text-sm">@musicfan</p>
+                                  <p className="text-sm text-gray-700">This is the best song ever! 🎵</p>
+                                  <p className="text-xs text-gray-500 mt-1">👍 1.2K likes</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
+                              <div className="flex items-start gap-2">
+                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                <div className="flex-1">
+                                  <p className="font-medium text-sm">@viewer123</p>
+                                  <p className="text-sm text-gray-700">Who's watching in 2025?</p>
+                                  <p className="text-xs text-gray-500 mt-1">👍 856 likes</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
+                              <div className="flex items-start gap-2">
+                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                <div className="flex-1">
+                                  <p className="font-medium text-sm">@cooluser</p>
+                                  <p className="text-sm text-gray-700">Thanks for the tutorial!</p>
+                                  <p className="text-xs text-gray-500 mt-1">👍 5 likes</p>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
+                              <div className="flex items-start gap-2">
+                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                <div className="flex-1">
+                                  <p className="font-medium text-sm">@cooluser</p>
+                                  <p className="text-sm text-gray-700">Thanks for the tutorial!</p>
+                                  <p className="text-xs text-gray-500 mt-1">👍 5 likes</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
+                              <div className="flex items-start gap-2">
+                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                <div className="flex-1">
+                                  <p className="font-medium text-sm">@viewer123</p>
+                                  <p className="text-sm text-gray-700">Who's watching in 2025?</p>
+                                  <p className="text-xs text-gray-500 mt-1">👍 856 likes</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg transition-all duration-500">
+                              <div className="flex items-start gap-2">
+                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                <div className="flex-1">
+                                  <p className="font-medium text-sm">@musicfan</p>
+                                  <p className="text-sm text-gray-700">This is the best song ever! 🎵</p>
+                                  <p className="text-xs text-gray-500 mt-1">👍 1.2K likes</p>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {currentAnimation === 3 && (
+                  <div className={`p-4 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* Instagram Post */}
+                    <div className="max-w-sm mx-auto">
+                      {/* Post Header */}
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                        <div>
+                          <p className="font-medium text-sm">@photographer</p>
+                          <p className="text-xs text-gray-500">New York, NY</p>
+                        </div>
+                      </div>
+                      
+                      {/* Image Placeholder */}
+                      <div className="relative">
+                        <div className="bg-gradient-to-br from-blue-400 to-purple-500 h-64 rounded-lg mb-3"></div>
+                        
+                        {/* Download Button - appears after demo */}
+                        {demoStep >= 5 && (
+                          <div className="absolute bottom-2 right-2">
+                            <Button
+                              onClick={() => setDownloadButtonAdded(true)}
+                              className={`transition-all duration-500 transform ${
+                                demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
+                              } ${downloadButtonAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-purple-600 hover:bg-purple-700'} text-white`}
+                            >
+                              {downloadButtonAdded ? '✓ Download Added!' : '⬇ Download'}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* Post Actions */}
+                      <div className="flex gap-4 mb-2">
+                        <span className="text-2xl">❤️</span>
+                        <span className="text-2xl">💬</span>
+                        <span className="text-2xl">📤</span>
+                      </div>
+                      
+                      {/* Post Caption */}
+                      <p className="text-sm">
+                        <span className="font-medium">@photographer</span> Beautiful sunset in the city 🌅
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1">2 hours ago</p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

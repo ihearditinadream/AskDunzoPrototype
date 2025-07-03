@@ -125,6 +125,16 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### January 03, 2025 - Hero Animation Enhancement
+- ✓ Added 3-animation cycle in hero section (was 1, now 3 total)
+- ✓ Animation 1: Blog site with dark mode toggle (existing)
+- ✓ Animation 2: YouTube comments sorted by likes (new)
+- ✓ Animation 3: Instagram post with download button (new)
+- ✓ Each animation shows complete workflow: icon → input → typing → processing → feature added
+- ✓ Smooth transitions between all 3 animations with 13-second cycles
+- ✓ Dynamic browser URL changes (myblog.com, youtube.com, instagram.com)
+- ✓ Interactive elements work during demos (dark mode toggle, sort button, download button)
+
 ### January 03, 2025 - Product Alignment with Technical Specification
 - ✓ Updated browser extension text: "What would you like to add or change on this site?" 
 - ✓ Added note below input: "Type your request, and Dunzo will make it happen!"

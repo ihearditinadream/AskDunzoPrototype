@@ -221,15 +221,7 @@ export default function HeroSection() {
           {/* Compatibility Icons */}
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-500">
             <div className="flex items-center space-x-2">
-              <svg className="w-6 h-6" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="21" fill="#4285F4"/>
-                <path fill="#EA4335" d="M24 14.7c2.9 0 5.3 1.2 6.7 2.8l5-5c-3-2.8-7-4.5-11.7-4.5-7.3 0-13.5 4.6-15.9 11l5.8 4.5c1.4-4.2 5.4-7.3 10.1-7.3z"/>
-                <path fill="#FBBC04" d="M38.8 24.5c0-1-.1-2-.3-3H24v5.7h8.3c-.4 2-1.6 3.6-3.3 4.7l5.1 4c3-2.8 4.7-6.8 4.7-11.4z"/>
-                <path fill="#34A853" d="M16.2 27.3c-.3-1-.5-2.1-.5-3.3s.2-2.3.5-3.3l-5.8-4.5c-1.2 2.4-1.9 5-1.9 7.8s.7 5.4 1.9 7.8l5.8-4.5z"/>
-                <path fill="#4285F4" d="M24 40c4.3 0 7.9-1.4 10.6-3.9l-5.1-4c-1.4 1-3.3 1.5-5.5 1.5-4.2 0-7.7-2.8-9-6.6l-5.8 4.5c2.4 4.8 7.4 8.1 13.3 8.1z"/>
-                <circle cx="24" cy="24" r="9.5" fill="white"/>
-                <circle cx="24" cy="24" r="7.5" fill="#4285F4"/>
-              </svg>
+              <SiGooglechrome className="w-6 h-6 text-[#4285F4]" />
               <span className="text-sm">Chrome</span>
             </div>
             <div className="flex items-center space-x-2">

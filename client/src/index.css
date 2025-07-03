@@ -96,32 +96,29 @@
 /* Mouse cursor animation */
 @keyframes moveMouse {
   0% {
-    top: 200px;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  50% {
-    top: 100px;
-    left: 70%;
+  40% {
+    top: 30%;
+    left: 65%;
     transform: translate(-50%, -50%);
   }
-  80% {
-    top: -180px;
-    left: auto;
-    right: 50px;
+  70% {
+    top: -195px;
+    left: calc(100% - 70px);
     transform: translate(0, 0);
   }
-  90% {
-    top: -180px;
-    left: auto;
-    right: 50px;
-    transform: scale(0.8);
+  85% {
+    top: -195px;
+    left: calc(100% - 70px);
+    transform: translate(0, 0) scale(0.9);
   }
   100% {
-    top: -180px;
-    left: auto;
-    right: 50px;
-    transform: scale(1);
+    top: -195px;
+    left: calc(100% - 70px);
+    transform: translate(0, 0) scale(1);
   }
 }
 

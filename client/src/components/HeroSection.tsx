@@ -188,16 +188,21 @@ export default function HeroSection() {
               <div className="relative bg-white p-4 sm:p-6 md:p-8 min-h-[250px] sm:min-h-[350px] md:min-h-[400px]">
                 {/* Mouse Cursor Animation */}
                 {demoStep === 1 && (
-                  <div className="absolute pointer-events-none z-[60]" style={{
-                    animation: 'moveMouse 1.5s ease-in-out forwards',
+                  <div className="absolute pointer-events-none z-[60] w-full h-full" style={{
+                    top: 0,
+                    left: 0,
                   }}>
-                    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                      <path d="M1 1L1 14L4 11L7 17L10 15L7 9L13 9L1 1Z" 
-                        fill="black" 
-                        stroke="white" 
-                        strokeWidth="1"
-                      />
-                    </svg>
+                    <div className="absolute" style={{
+                      animation: 'moveMouse 1.5s ease-in-out forwards',
+                    }}>
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <path d="M1 1L1 14L4 11L7 17L10 15L7 9L13 9L1 1Z" 
+                          fill="black" 
+                          stroke="white" 
+                          strokeWidth="1"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 )}
 

@@ -156,7 +156,7 @@ export default function HeroSection() {
                       {/* Processing indicator - appears in step 4 */}
                       {demoStep === 4 && (
                         <div className="mt-3 text-sm text-gray-500 animate-pulse">
-                          ✨ Processing your request...
+                          ✨ Dunzo is processing your request...
                         </div>
                       )}
                     </div>

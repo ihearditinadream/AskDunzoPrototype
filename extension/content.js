@@ -50,21 +50,22 @@ function showInputBox() {
   inputContainer.innerHTML = `
     <div class="askdunzo-input-header">
       <img src="${chrome.runtime.getURL('icons/icon-32.png')}" alt="AskDunzo" />
-      <span>What would you like to add to this website?</span>
+      <span>What would you like to add or change on this site?</span>
       <button class="askdunzo-close" aria-label="Close">&times;</button>
     </div>
     <textarea 
       class="askdunzo-input-field" 
-      placeholder="e.g., Add a dark mode toggle button"
+      placeholder="What would you like to add or change on this site?"
       rows="3"
     ></textarea>
+    <p class="askdunzo-note" style="margin: 8px 0; font-size: 13px; color: #666; text-align: center;">Type your request, and Dunzo will make it happen!</p>
     <div class="askdunzo-input-actions">
       <button class="askdunzo-btn askdunzo-btn-primary">Generate Feature</button>
       <button class="askdunzo-btn askdunzo-btn-secondary">Cancel</button>
     </div>
     <div class="askdunzo-loading" style="display: none;">
       <div class="askdunzo-spinner"></div>
-      <span>Analyzing website and generating feature...</span>
+      <span>Dunzo is analyzing and generating your feature...</span>
     </div>
   `;
   

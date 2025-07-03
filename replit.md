@@ -125,6 +125,20 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### January 03, 2025 - Product Alignment with Technical Specification
+- ✓ Updated browser extension text: "What would you like to add or change on this site?" 
+- ✓ Added note below input: "Type your request, and Dunzo will make it happen!"
+- ✓ Updated pricing tiers with generation times (30-60s free, 5-30s premium)
+- ✓ Added WebSquare access limits (1/week free, unlimited premium)
+- ✓ Updated premium features: phone support, feature preview, monthly expiration
+- ✓ Added lifetime tier limit of 3000 users
+- ✓ Enhanced data sharing program with instant rewards and tracking protection
+- ✓ Added 100% monetary compensation guarantee for data leaks
+- ✓ Updated processing indicator to mention "Dunzo"
+- → Pending: Create proper logo (hand-drawn D with cursor in middle)
+- → Pending: Full implementation of referral program UI
+- → Pending: WebSquare creator dashboard for premium users
+
 ### January 03, 2025 - UI Enhancements
 - ✓ Added accurate browser and OS logos to Chrome, Firefox, Windows, and macOS compatibility buttons
 - ✓ Updated data sharing earnings display to focus on community contribution

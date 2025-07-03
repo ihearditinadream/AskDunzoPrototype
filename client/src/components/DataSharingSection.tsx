@@ -44,8 +44,28 @@ export default function DataSharingSection() {
                   <span className="text-white text-xl">💰</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-black mb-2">Real Money</h4>
-                  <p className="text-gray-600">We don't just reward you with points. Earn real cash payouts every 3 months for your contribution.</p>
+                  <h4 className="font-bold text-black mb-2">Real Money + Instant Rewards</h4>
+                  <p className="text-gray-600">Cash payouts every 3 months PLUS instant extra feature slot that lasts as long as premium users'.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-xl">🚫</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-black mb-2">Block ALL Tracking</h4>
+                  <p className="text-gray-600">Block tracking from Google, Meta, Apple, data brokers, and all other companies across all your devices with AskDunzo.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-xl">💸</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-black mb-2">100% Protection Guarantee</h4>
+                  <p className="text-gray-600">If any user data is leaked, you get FULL monetary compensation. Your safety is guaranteed.</p>
                 </div>
               </div>
             </div>
@@ -80,8 +100,8 @@ export default function DataSharingSection() {
                   <h4 className="font-bold text-black">100% to AskDunzo</h4>
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Extra Perks</span>
                 </div>
-                <p className="text-gray-600 mb-4">Give 100% of profits for premium benefits</p>
-                <div className="text-lg font-bold text-black">+ Extra premium slot + Ad-blocking</div>
+                <p className="text-gray-600 mb-4">Donate 100% of profits to support AskDunzo development</p>
+                <div className="text-lg font-bold text-black">+ Extra premium feature slot + Higher cloud priority than other free users</div>
               </div>
             </div>
           </div>

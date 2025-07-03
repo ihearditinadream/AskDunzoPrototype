@@ -50,19 +50,23 @@ export default function PricingSection() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">3 requests per week</span>
+                <span className="text-gray-700">3 feature requests per week</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Basic features</span>
+                <span className="text-gray-700">30-60 seconds generation time</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Weekly reset</span>
+                <span className="text-gray-700">Basic tweaks only</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Email support</span>
+                <span className="text-gray-700">Features expire weekly</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <span className="text-green-500 font-bold">✓</span>
+                <span className="text-gray-700">1 WebSquare use per week</span>
               </li>
             </ul>
 
@@ -93,23 +97,31 @@ export default function PricingSection() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">50 requests per week</span>
+                <span className="text-gray-700">50 feature requests per week</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Faster generation</span>
+                <span className="text-gray-700">5-30 seconds generation time</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Advanced features</span>
+                <span className="text-gray-700">Advanced & complex features</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Priority support</span>
+                <span className="text-gray-700">Features expire monthly (can keep)</span>
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-green-500 font-bold">✓</span>
-                <span className="text-gray-700">Early access to features</span>
+                <span className="text-gray-700">Unlimited WebSquare access</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <span className="text-green-500 font-bold">✓</span>
+                <span className="text-gray-700">Phone customer support</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <span className="text-green-500 font-bold">✓</span>
+                <span className="text-gray-700">Feature preview & customization</span>
               </li>
               {isLifetime && (
                 <>
@@ -161,6 +173,10 @@ export default function PricingSection() {
                 <li className="flex items-center space-x-3">
                   <span className="text-green-500 font-bold">✓</span>
                   <span className="text-gray-700">VIP support</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <span className="text-yellow-500 font-bold">⚡</span>
+                  <span className="text-gray-700">Limited to first 3000 users</span>
                 </li>
               </ul>
 

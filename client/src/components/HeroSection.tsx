@@ -154,7 +154,7 @@ export default function HeroSection() {
           <div className="demo-container max-w-2xl md:max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-white">
             <div className="browser-mockup">
               {/* Browser Header */}
-              <div className="browser-header flex items-center px-2 sm:px-4">
+              <div className="browser-header flex items-center px-2 sm:px-4 relative">
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -166,22 +166,21 @@ export default function HeroSection() {
                   {currentAnimation === 3 && "instagram.com"}
                   {currentAnimation === 4 && "news.com"}
                 </div>
-              </div>
-
-              {/* Extension Icon in Browser Toolbar */}
-              <div className="absolute -top-11 right-4 z-50">
-                <div className={`w-9 h-9 rounded flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                  demoStep === 0 ? 'bg-gray-100 hover:bg-gray-200' : 
-                  demoStep === 1 ? 'bg-black shadow-lg scale-110 animate-pulse' : 
-                  'bg-gray-900'
+                
+                {/* Extension Icon in Browser Toolbar */}
+                <div className={`w-7 h-7 rounded-md flex items-center justify-center transition-all duration-300 cursor-pointer mr-2 ${
+                  demoStep === 0 ? 'bg-gray-200' : 
+                  demoStep === 1 ? 'bg-black shadow-md scale-110' : 
+                  'bg-black'
                 }`}>
                   <img 
                     src={logoWhite} 
                     alt="Dunzo" 
-                    className={`w-6 h-6 object-contain ${
-                      demoStep >= 1 ? 'invert' : ''
-                    }`}
+                    className="w-5 h-5 object-contain invert"
                   />
+                  {demoStep === 1 && (
+                    <div className="absolute inset-0 rounded-md animate-ping bg-black opacity-30"></div>
+                  )}
                 </div>
               </div>
 

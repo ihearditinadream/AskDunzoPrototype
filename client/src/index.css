@@ -96,31 +96,31 @@
 /* Mouse cursor animation */
 @keyframes moveMouse {
   0% {
-    top: 50%;
+    top: 200px;
     left: 50%;
     transform: translate(-50%, -50%);
   }
   50% {
-    top: 10%;
+    top: 100px;
     left: 70%;
     transform: translate(-50%, -50%);
   }
   80% {
-    top: -25px;
+    top: -180px;
     left: auto;
-    right: 20px;
+    right: 50px;
     transform: translate(0, 0);
   }
   90% {
-    top: -25px;
+    top: -180px;
     left: auto;
-    right: 20px;
+    right: 50px;
     transform: scale(0.8);
   }
   100% {
-    top: -25px;
+    top: -180px;
     left: auto;
-    right: 20px;
+    right: 50px;
     transform: scale(1);
   }
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import logoBlack from "@assets/unnamed (1)_1751431724399.jpg";
-import logoWhite from "@assets/unnamed (1)_1751521943948.jpg";
 import { SiGooglechrome, SiFirefox } from "react-icons/si";
 
 export default function HeroSection() {
@@ -154,7 +153,7 @@ export default function HeroSection() {
           <div className="demo-container max-w-2xl md:max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-white">
             <div className="browser-mockup">
               {/* Browser Header */}
-              <div className="browser-header flex items-center px-2 sm:px-4 relative">
+              <div className="browser-header flex items-center px-2 sm:px-4">
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -166,42 +165,32 @@ export default function HeroSection() {
                   {currentAnimation === 3 && "instagram.com"}
                   {currentAnimation === 4 && "news.com"}
                 </div>
-                
-                {/* Extension Icon in Browser Toolbar */}
-                <div className={`w-7 h-7 rounded-md flex items-center justify-center transition-all duration-300 cursor-pointer mr-2 ${
-                  demoStep === 0 ? 'bg-gray-200' : 
-                  demoStep === 1 ? 'bg-black shadow-md scale-110' : 
-                  'bg-black'
-                }`}>
-                  <img 
-                    src={logoWhite} 
-                    alt="Dunzo" 
-                    className="w-5 h-5 object-contain invert"
-                  />
-                  {demoStep === 1 && (
-                    <div className="absolute inset-0 rounded-md animate-ping bg-black opacity-30"></div>
-                  )}
-                </div>
               </div>
 
               {/* AskDunzo Interface Overlay */}
               <div className="relative bg-white p-4 sm:p-6 md:p-8 min-h-[250px] sm:min-h-[350px] md:min-h-[400px]">
-                {/* Mouse Cursor Animation */}
+                {/* Step 1: Show only centered logo */}
                 {demoStep === 1 && (
-                  <div className="absolute pointer-events-none z-[60] w-full h-full" style={{
-                    top: 0,
-                    left: 0,
-                  }}>
-                    <div className="absolute" style={{
-                      animation: 'moveMouse 1.5s ease-in-out forwards',
-                    }}>
-                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                        <path d="M1 1L1 14L4 11L7 17L10 15L7 9L13 9L1 1Z" 
-                          fill="black" 
-                          stroke="white" 
-                          strokeWidth="1"
-                        />
-                      </svg>
+                  <div className="absolute inset-0 flex justify-center items-center z-50">
+                    <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center animate-pulse">
+                      <img 
+                        src={logoBlack} 
+                        alt="AskDunzo" 
+                        className="w-12 h-12 object-contain invert"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 2+: Logo in corner with higher z-index */}
+                {demoStep >= 2 && (
+                  <div className="absolute top-4 right-4 z-50">
+                    <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                      <img 
+                        src={logoBlack} 
+                        alt="AskDunzo" 
+                        className="w-6 h-6 object-contain invert"
+                      />
                     </div>
                   </div>
                 )}

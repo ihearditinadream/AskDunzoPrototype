@@ -139,10 +139,6 @@ Preferred communication style: Simple, everyday language.
 - ✓ Made animations slower with extended timing (2s → 16.5s per animation)
 - ✓ Reduced size of YouTube, Instagram, and News animations for better fit on screen
 - ✓ Enhanced visual appeal with gradients, better typography, and compact layouts
-- ✓ Added realistic Dunzo extension icon in browser toolbar (always visible)
-- ✓ Mouse cursor animation travels from center to click extension icon
-- ✓ Changed from black to white Dunzo logo for better visibility
-- ✓ Added click animation effect on mouse cursor reaching extension
 
 ### January 03, 2025 - Product Alignment with Technical Specification
 - ✓ Updated browser extension text: "What would you like to add or change on this site?" 

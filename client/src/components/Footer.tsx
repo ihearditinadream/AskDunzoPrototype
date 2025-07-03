@@ -70,42 +70,31 @@ export default function Footer() {
           </div>
 
           {/* Right section - Links grid */}
-          <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-sm">
-            <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
-                Contact Us
-              </a>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
-                Careers
-              </a>
-              <a href="#" className="block hover:text-gray-300 transition-colors">
-                Ethos
-              </a>
-            </div>
-            
-            <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors">
-                Help
-              </a>
-            </div>
-
-            <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
-                Terms of Service
-              </a>
-              <a href="#" className="block hover:text-gray-300 transition-colors">
-                Privacy Policy
-              </a>
-            </div>
-
-            <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
-                Acts Notices
-              </a>
-              <a href="#" className="block hover:text-gray-300 transition-colors">
-                News
-              </a>
-            </div>
+          <div className="lg:w-2/3 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Contact Us
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Careers
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Ethos
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Help
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Terms of Service
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Acts Notices
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              News
+            </a>
           </div>
         </div>
       </div>

@@ -126,7 +126,7 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 ### January 03, 2025 - UI Enhancements
-- ✓ Added visual icons to Chrome, Firefox, Windows, and macOS compatibility buttons
+- ✓ Added accurate browser and OS logos to Chrome, Firefox, Windows, and macOS compatibility buttons
 - ✓ Updated data sharing earnings display to focus on community contribution
 - ✓ Updated footer copyright year to 2026
 

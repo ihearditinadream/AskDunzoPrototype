@@ -220,25 +220,41 @@ export default function HeroSection() {
           {/* Compatibility Icons */}
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-500">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-green-500 rounded flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.001 5.5c.607 0 1.211.127 1.78.374l-5.61 5.61a6.452 6.452 0 0 1-.169-1.485c0-3.584 2.916-6.5 6-6.5zm0 13c-.607 0-1.211-.127-1.78-.374l5.61-5.61c.11.478.17.975.17 1.484 0 3.584-2.916 6.5-6 6.5z"/>
+              <div className="w-6 h-6 rounded flex items-center justify-center">
+                <svg className="w-6 h-6" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="#4285F4"/>
+                  <path fill="#34A853" d="M12 12L12 2A10 10 0 0 1 22 12H12z"/>
+                  <path fill="#FBBC04" d="M12 12L2 12A10 10 0 0 1 7.05 3.05L12 12z"/>
+                  <path fill="#EA4335" d="M12 12L16.95 20.95A10 10 0 0 1 7.05 20.95L12 12z"/>
+                  <circle cx="12" cy="12" r="4" fill="white"/>
                 </svg>
               </div>
               <span className="text-sm">Chrome</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-yellow-500 rounded flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.44 8.65c-.386-1.017-1.16-2.217-2.175-3.284a10.93 10.93 0 0 0-.494-2.066C19.925 1.254 18.17.16 16.125.16c-.813 0-1.653.173-2.434.5C13.25.533 12.795.48 12.32.48c-.72 0-1.36.08-1.853.307-3.36 1.386-5.827 4.693-5.827 8.533 0 .16 0 .333.013.493C1.8 11.093 0 13.813 0 16.907c0 3.933 2.84 7.267 6.787 7.92.88.147 1.787.173 2.667.08.32-.04.64-.107.973-.173.707-.133 1.44-.387 2.174-.72.373-.173.76-.36 1.133-.573a16.02 16.02 0 0 0 3.12-2.533 15.867 15.867 0 0 0 3.12-4.107c.373-.747.68-1.547.907-2.387.413-1.467.533-3.04.173-4.667a9.329 9.329 0 0 0-.693-2.107zm-11.12 11.66c-4.587 0-8.32-3.733-8.32-8.32s3.733-8.32 8.32-8.32 8.32 3.733 8.32 8.32-3.733 8.32-8.32 8.32z"/>
+              <div className="w-6 h-6 rounded flex items-center justify-center">
+                <svg className="w-6 h-6" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="firefoxGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FF9500"/>
+                      <stop offset="100%" stopColor="#FF5E00"/>
+                    </linearGradient>
+                    <linearGradient id="firefoxGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFDE00"/>
+                      <stop offset="100%" stopColor="#FF9500"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="12" cy="12" r="10" fill="url(#firefoxGradient1)"/>
+                  <path d="M16.4 7.2c-.8-1.2-2.1-2-3.6-2.3-.4-.1-.8-.1-1.2-.1-2.2 0-4.1 1.3-5 3.2-.3.6-.5 1.3-.5 2 0 .3 0 .6.1.9.2 1.7 1.2 3.1 2.6 3.9.7.4 1.5.6 2.3.6 2.7 0 4.9-2.2 4.9-4.9 0-.8-.2-1.5-.6-2.3z" fill="url(#firefoxGradient2)"/>
+                  <ellipse cx="11" cy="11" rx="3" ry="3.5" fill="#FF5E00" transform="rotate(-20 11 11)"/>
                 </svg>
               </div>
               <span className="text-sm">Firefox</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-cyan-500 rounded flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M3 12V6.75L9 5.43v6.48l-6 1.01m0-6.41v6.41L9 11.51M3 13l6-1.01v6.41l-6 1.17V13m18 0v6.75L15 21.07v-6.48l6-1.01m0 6.41v-6.41L15 12.49m0-6.41l6-1.17V11.59L15 12.6V6.08"/>
+              <div className="w-6 h-6 rounded flex items-center justify-center">
+                <svg className="w-6 h-6" viewBox="0 0 24 24">
+                  <path fill="#0078D4" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
                 </svg>
               </div>
               <span className="text-sm">Windows</span>

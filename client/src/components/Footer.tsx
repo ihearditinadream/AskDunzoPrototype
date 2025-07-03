@@ -70,12 +70,12 @@ export default function Footer() {
           </div>
 
           {/* Right section - Links grid */}
-          <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-sm">
+          <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-sm">
             <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
                 Contact Us
               </a>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
                 Careers
               </a>
               <a href="#" className="block hover:text-gray-300 transition-colors">
@@ -84,22 +84,22 @@ export default function Footer() {
             </div>
             
             <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+              <a href="#" className="block hover:text-gray-300 transition-colors">
                 Help
               </a>
             </div>
 
             <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
                 Terms of Service
               </a>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+              <a href="#" className="block hover:text-gray-300 transition-colors">
                 Privacy Policy
               </a>
             </div>
 
             <div>
-              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-2">
                 Acts Notices
               </a>
               <a href="#" className="block hover:text-gray-300 transition-colors">

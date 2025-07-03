@@ -29,44 +29,44 @@ export default function HeroSection() {
       if (currentAnimation === 1) {
         // Dark mode animation
         animationSteps = [
-          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
-          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
-          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
-          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
-          { delay: 8000, action: () => setDemoStep(5) }, // Show dark mode button
-          { delay: 9500, action: () => setIsDarkMode(true) }, // Auto-toggle dark mode
-          { delay: 11000, action: () => setIsDarkMode(false) }, // Toggle back
+          { delay: 2000, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 3500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 5000, action: () => setDemoStep(3) }, // Start typing
+          { delay: 9000, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 11500, action: () => setDemoStep(5) }, // Show dark mode button
+          { delay: 14000, action: () => setIsDarkMode(true) }, // Auto-toggle dark mode
+          { delay: 16500, action: () => setIsDarkMode(false) }, // Toggle back
         ];
       } else if (currentAnimation === 2) {
         // YouTube comments animation
         animationSteps = [
-          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
-          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
-          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
-          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
-          { delay: 8000, action: () => setDemoStep(5) }, // Show sort button
-          { delay: 9500, action: () => setSortedComments(true) }, // Sort comments
-          { delay: 11000, action: () => setSortedComments(false) }, // Reset
+          { delay: 2000, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 3500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 5000, action: () => setDemoStep(3) }, // Start typing
+          { delay: 9000, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 11500, action: () => setDemoStep(5) }, // Show sort button
+          { delay: 14000, action: () => setSortedComments(true) }, // Sort comments
+          { delay: 16500, action: () => setSortedComments(false) }, // Reset
         ];
       } else if (currentAnimation === 3) {
         // Instagram download animation
         animationSteps = [
-          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
-          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
-          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
-          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
-          { delay: 8000, action: () => setDemoStep(5) }, // Show download button
-          { delay: 9500, action: () => setDownloadButtonAdded(true) }, // Show added state
+          { delay: 2000, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 3500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 5000, action: () => setDemoStep(3) }, // Start typing
+          { delay: 9000, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 11500, action: () => setDemoStep(5) }, // Show download button
+          { delay: 14000, action: () => setDownloadButtonAdded(true) }, // Show added state
         ];
       } else if (currentAnimation === 4) {
         // Ad blocker animation
         animationSteps = [
-          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
-          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
-          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
-          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
-          { delay: 8000, action: () => setDemoStep(5) }, // Show block ads button
-          { delay: 9500, action: () => setAdsBlocked(true) }, // Block ads
+          { delay: 2000, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 3500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 5000, action: () => setDemoStep(3) }, // Start typing
+          { delay: 9000, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 11500, action: () => setDemoStep(5) }, // Show block ads button
+          { delay: 14000, action: () => setAdsBlocked(true) }, // Block ads
         ];
       }
 
@@ -77,7 +77,7 @@ export default function HeroSection() {
       // Move to next animation after this one completes
       const nextAnimationTimer = setTimeout(() => {
         setCurrentAnimation(prev => prev === 4 ? 1 : prev + 1);
-      }, 13000);
+      }, 20000); // Extended from 13s to 20s for better visibility
 
       return [...timers, nextAnimationTimer];
     };
@@ -355,29 +355,52 @@ export default function HeroSection() {
 
                 {currentAnimation === 2 && (
                   <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
-                    {/* YouTube Video Player */}
-                    <div className="bg-black p-2 mb-4">
-                      <div className="relative bg-gradient-to-br from-red-600 to-pink-600 rounded-lg aspect-video flex items-center justify-center">
-                        <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
-                        <svg className="w-16 h-16 text-white z-10" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    {/* YouTube Header */}
+                    <div className="bg-white px-3 py-2 flex items-center gap-3 border-b shadow-sm">
+                      <div className="text-red-600">
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+                          <path fill="white" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
+                      </div>
+                      <span className="font-medium text-sm">YouTube</span>
+                    </div>
+
+                    {/* YouTube Video Player */}
+                    <div className="bg-gray-100 p-3">
+                      <div className="relative bg-gradient-to-br from-red-600 via-pink-600 to-orange-500 rounded-lg aspect-video flex items-center justify-center shadow-lg">
+                        <div className="absolute inset-0 bg-black bg-opacity-10 rounded-lg"></div>
+                        <div className="relative z-10 text-center">
+                          <svg className="w-12 h-12 text-white mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                          </svg>
+                          <p className="text-white text-xs font-medium">React Tutorial 2025</p>
+                        </div>
                         <div className="absolute bottom-2 left-2 text-white text-xs bg-black bg-opacity-75 px-2 py-1 rounded">
                           10:24
                         </div>
                       </div>
-                    </div>
                     
-                    {/* Video Title and Info */}
-                    <div className="px-4 mb-4">
-                      <h2 className="font-bold text-lg mb-1">Amazing Tutorial: Learn React in 2025</h2>
-                      <p className="text-gray-600 text-sm">125K views • 2 days ago</p>
+                      {/* Video Title and Info */}
+                      <div className="mt-3">
+                        <h2 className="font-bold text-base mb-1">Amazing Tutorial: Learn React in 2025</h2>
+                        <p className="text-gray-600 text-xs flex items-center gap-2">
+                          <span className="font-medium">125K views</span>
+                          <span>•</span>
+                          <span>2 days ago</span>
+                          <span>•</span>
+                          <span className="text-blue-600 font-medium">@techguru</span>
+                        </p>
+                      </div>
                     </div>
 
                     {/* Comments Section */}
-                    <div className="px-4">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-semibold text-base">1,234 Comments</h3>
+                    <div className="px-3 pb-3">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-semibold text-sm flex items-center gap-2">
+                          <span className="text-gray-700">Comments</span>
+                          <span className="text-gray-500 font-normal">(1,234)</span>
+                        </h3>
                         
                         {/* Sort Button */}
                         {demoStep >= 5 && (
@@ -385,9 +408,9 @@ export default function HeroSection() {
                             onClick={() => setSortedComments(!sortedComments)}
                             className={`transition-all duration-500 transform ${
                               demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
-                            } bg-red-600 text-white hover:bg-red-700 shadow-lg flex items-center gap-2`}
+                            } bg-gradient-to-r from-red-600 to-orange-600 text-white hover:from-red-700 hover:to-orange-700 shadow-lg flex items-center gap-1.5 text-xs px-3 py-1.5`}
                           >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
                             </svg>
                             Sort by Likes
@@ -396,32 +419,27 @@ export default function HeroSection() {
                       </div>
                       
                       {/* Comments List */}
-                      <div className={`flex flex-col gap-3 transition-all duration-700`}>
+                      <div className="flex flex-col gap-2 max-h-[200px] overflow-y-auto">
                         {sortedComments ? (
                           <>
-                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">
+                            <div className="flex gap-2 p-2 rounded-lg bg-white border hover:border-gray-300 transition-colors">
+                              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-xs shadow-sm">
                                 M
                               </div>
                               <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <p className="font-semibold text-sm">@musicfan</p>
-                                  <p className="text-xs text-gray-500">2 hours ago</p>
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  <p className="font-semibold text-xs">@musicfan</p>
+                                  <p className="text-xs text-gray-400">2h ago</p>
                                 </div>
-                                <p className="text-sm text-gray-800 mb-2">This is the best tutorial I've ever seen! The explanations are so clear 🎵</p>
-                                <div className="flex items-center gap-4">
-                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <p className="text-xs text-gray-700 mb-1.5">Best tutorial ever! So clear 🎵</p>
+                                <div className="flex items-center gap-3">
+                                  <button className="flex items-center gap-1 text-xs text-gray-500 hover:text-red-600 transition-colors">
+                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                                     </svg>
-                                    <span className="font-semibold">1.2K</span>
+                                    <span className="font-bold">1.2K</span>
                                   </button>
-                                  <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-900">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3 3 7-7" />
-                                    </svg>
-                                    Reply
-                                  </button>
+                                  <button className="text-xs text-gray-500 hover:text-gray-700">Reply</button>
                                 </div>
                               </div>
                             </div>
@@ -571,32 +589,56 @@ export default function HeroSection() {
 
                 {currentAnimation === 3 && (
                   <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* Instagram Header */}
+                    <div className="bg-white px-3 py-2 flex items-center justify-between border-b shadow-sm">
+                      <div className="flex items-center gap-2">
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="url(#instagram-gradient)">
+                          <defs>
+                            <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#f58529" />
+                              <stop offset="50%" stopColor="#dd2a7b" />
+                              <stop offset="100%" stopColor="#8134af" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                        </svg>
+                        <span className="font-medium text-sm">Instagram</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-gray-700">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </div>
+                    </div>
+                    
                     {/* Instagram Stories Bar */}
-                    <div className="px-4 py-3 bg-white border-b border-gray-200">
-                      <div className="flex gap-3 overflow-x-auto">
+                    <div className="px-3 py-2 bg-white border-b">
+                      <div className="flex gap-2 overflow-x-auto">
                         <div className="flex-shrink-0">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
                             <div className="w-full h-full bg-white rounded-full p-0.5">
-                              <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 to-pink-500"></div>
+                              <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
+                                +
+                              </div>
                             </div>
                           </div>
-                          <p className="text-xs text-center mt-1">Your Story</p>
                         </div>
                         <div className="flex-shrink-0">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
                             <div className="w-full h-full bg-white rounded-full p-0.5">
                               <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
                             </div>
                           </div>
-                          <p className="text-xs text-center mt-1">travel_pics</p>
                         </div>
                         <div className="flex-shrink-0">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
                             <div className="w-full h-full bg-white rounded-full p-0.5">
                               <div className="w-full h-full rounded-full bg-gradient-to-br from-green-400 to-blue-500"></div>
                             </div>
                           </div>
-                          <p className="text-xs text-center mt-1">foodie</p>
                         </div>
                       </div>
                     </div>
@@ -604,50 +646,48 @@ export default function HeroSection() {
                     {/* Instagram Post */}
                     <div className="bg-white">
                       {/* Post Header */}
-                      <div className="flex items-center justify-between px-4 py-3">
-                        <div className="flex items-center gap-3">
-                          <div className="relative">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
-                              <div className="w-full h-full bg-white rounded-full p-0.5">
-                                <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
-                                  P
-                                </div>
+                      <div className="flex items-center justify-between px-3 py-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
+                            <div className="w-full h-full bg-white rounded-full p-0.5">
+                              <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-xs">
+                                P
                               </div>
                             </div>
                           </div>
                           <div>
-                            <p className="font-semibold text-sm">photographer</p>
-                            <p className="text-xs text-gray-500">Times Square, New York</p>
+                            <p className="font-semibold text-xs">photographer</p>
+                            <p className="text-xs text-gray-500">NYC</p>
                           </div>
                         </div>
-                        <button className="text-gray-600">
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                          </svg>
-                        </button>
+                        <svg className="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                        </svg>
                       </div>
                       
                       {/* Image */}
                       <div className="relative">
-                        <div className="relative overflow-hidden bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400">
-                          <div className="absolute inset-0 bg-black bg-opacity-10"></div>
-                          <div className="relative h-80 flex items-center justify-center">
-                            {/* Simulated city skyline */}
-                            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center gap-1 p-4">
-                              <div className="w-8 h-24 bg-white bg-opacity-20 rounded-t"></div>
-                              <div className="w-10 h-32 bg-white bg-opacity-20 rounded-t"></div>
-                              <div className="w-6 h-28 bg-white bg-opacity-20 rounded-t"></div>
-                              <div className="w-12 h-40 bg-white bg-opacity-20 rounded-t"></div>
-                              <div className="w-8 h-36 bg-white bg-opacity-20 rounded-t"></div>
-                              <div className="w-10 h-30 bg-white bg-opacity-20 rounded-t"></div>
+                        <div className="relative overflow-hidden bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500">
+                          <div className="absolute inset-0 bg-black bg-opacity-5"></div>
+                          <div className="relative h-48 flex items-center justify-center">
+                            {/* Beautiful sunset scene */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
+                            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center gap-0.5 p-2">
+                              <div className="w-4 h-12 bg-black bg-opacity-30 rounded-t"></div>
+                              <div className="w-5 h-16 bg-black bg-opacity-30 rounded-t"></div>
+                              <div className="w-3 h-14 bg-black bg-opacity-30 rounded-t"></div>
+                              <div className="w-6 h-20 bg-black bg-opacity-30 rounded-t"></div>
+                              <div className="w-4 h-18 bg-black bg-opacity-30 rounded-t"></div>
+                              <div className="w-5 h-15 bg-black bg-opacity-30 rounded-t"></div>
                             </div>
-                            <div className="absolute top-8 right-8 w-16 h-16 bg-yellow-300 rounded-full blur-xl opacity-70"></div>
+                            <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-300 rounded-full blur-lg opacity-80"></div>
+                            <div className="absolute top-8 left-6 w-4 h-4 bg-orange-300 rounded-full blur opacity-60"></div>
                           </div>
                         </div>
                         
                         {/* Download Button - appears after demo */}
                         {demoStep >= 5 && (
-                          <div className="absolute bottom-4 right-4">
+                          <div className="absolute bottom-3 right-3">
                             <Button
                               onClick={() => setDownloadButtonAdded(true)}
                               className={`transition-all duration-500 transform ${
@@ -655,18 +695,18 @@ export default function HeroSection() {
                               } ${downloadButtonAdded 
                                 ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg' 
                                 : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg'
-                              } text-white flex items-center gap-2`}
+                              } text-white flex items-center gap-1.5 text-xs px-3 py-1.5`}
                             >
                               {downloadButtonAdded ? (
                                 <>
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                   </svg>
-                                  Download Added!
+                                  Added!
                                 </>
                               ) : (
                                 <>
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                   </svg>
                                   Download
@@ -678,42 +718,40 @@ export default function HeroSection() {
                       </div>
                       
                       {/* Post Actions */}
-                      <div className="px-4 py-3">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-4">
+                      <div className="px-3 py-2">
+                        <div className="flex items-center justify-between mb-1">
+                          <div className="flex items-center gap-3">
                             <button className="hover:opacity-60 transition-opacity">
-                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                               </svg>
                             </button>
                             <button className="hover:opacity-60 transition-opacity">
-                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                               </svg>
                             </button>
                             <button className="hover:opacity-60 transition-opacity">
-                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.632 4.316C18.114 15.938 18 15.482 18 15c0-.482.114-.938.316-1.342m0 2.684a3 3 0 110-2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z" transform="rotate(-30 12 12)" />
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.632 4.316C18.114 15.938 18 15.482 18 15c0-.482.114-.938.316-1.342m0 2.684a3 3 0 110-2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z" transform="rotate(-30 12 12)" />
                               </svg>
                             </button>
                           </div>
                           <button className="hover:opacity-60 transition-opacity">
-                            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                             </svg>
                           </button>
                         </div>
                         
-                        {/* Likes */}
-                        <p className="font-semibold text-sm mb-2">2,543 likes</p>
-                        
-                        {/* Caption */}
-                        <div className="space-y-1">
-                          <p className="text-sm">
-                            <span className="font-semibold">photographer</span> Golden hour in the city that never sleeps 🌆✨ The skyline looks magical during sunset!
+                        {/* Likes and Caption */}
+                        <div className="space-y-0.5">
+                          <p className="font-semibold text-xs">2,543 likes</p>
+                          <p className="text-xs">
+                            <span className="font-semibold">photographer</span> Golden hour in NYC 🌆✨
                           </p>
-                          <button className="text-gray-500 text-sm">View all 89 comments</button>
-                          <p className="text-xs text-gray-500 uppercase">2 hours ago</p>
+                          <p className="text-xs text-gray-500">View all 89 comments</p>
+                          <p className="text-xs text-gray-400 uppercase">2 hours ago</p>
                         </div>
                       </div>
                     </div>
@@ -723,43 +761,42 @@ export default function HeroSection() {
                 {currentAnimation === 4 && (
                   <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
                     {/* News Website Header */}
-                    <div className="bg-red-600 px-4 py-3 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="text-white text-2xl font-bold">
-                          <span className="bg-white text-red-600 px-2 py-1 rounded">NEWS</span>
+                    <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between shadow-sm">
+                      <div className="flex items-center gap-2">
+                        <div className="text-white text-sm font-bold flex items-center">
+                          <span className="bg-white text-red-600 px-1.5 py-0.5 rounded text-xs">NEWS</span>
                           <span className="ml-1">TODAY</span>
                         </div>
                       </div>
-                      <div className="flex gap-4 text-white text-sm">
-                        <span>Politics</span>
-                        <span>Tech</span>
-                        <span>Sports</span>
-                        <span>Weather</span>
+                      <div className="flex gap-3 text-white text-xs">
+                        <span className="hover:underline cursor-pointer">Tech</span>
+                        <span className="hover:underline cursor-pointer">Business</span>
+                        <span className="hover:underline cursor-pointer">Sports</span>
                       </div>
                     </div>
 
                     {/* Ad Blocker Button */}
                     {demoStep >= 5 && (
-                      <div className="absolute top-20 right-4 z-50">
+                      <div className="absolute top-12 right-3 z-50">
                         <Button
                           onClick={() => setAdsBlocked(!adsBlocked)}
                           className={`transition-all duration-500 transform ${
                             demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
                           } ${adsBlocked 
-                            ? 'bg-green-600 hover:bg-green-700' 
-                            : 'bg-red-600 hover:bg-red-700'
-                          } text-white shadow-lg flex items-center gap-2`}
+                            ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800' 
+                            : 'bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700'
+                          } text-white shadow-lg flex items-center gap-1.5 text-xs px-3 py-1.5`}
                         >
                           {adsBlocked ? (
                             <>
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
                               Ads Blocked!
                             </>
                           ) : (
                             <>
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                               </svg>
                               Block Ads
@@ -770,103 +807,93 @@ export default function HeroSection() {
                     )}
 
                     {/* News Content */}
-                    <div className="bg-gray-100 p-4">
+                    <div className="bg-gray-50 p-2">
                       {/* Top Banner Ad */}
                       {!adsBlocked && (
-                        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-4 rounded-lg mb-4 text-center font-bold animate-pulse">
-                          <div className="text-xs mb-1">ADVERTISEMENT</div>
-                          <div className="text-xl">🎯 LIMITED TIME OFFER - 50% OFF!</div>
-                          <div className="text-sm">Click here for amazing deals!</div>
+                        <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-2 rounded mb-2 text-center font-bold animate-pulse">
+                          <div className="text-xs flex items-center justify-center gap-2">
+                            <span>🎯 FLASH SALE</span>
+                            <span>•</span>
+                            <span>50% OFF TODAY!</span>
+                          </div>
                         </div>
                       )}
 
                       {/* Main Content Grid */}
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="flex gap-2">
                         {/* Left Sidebar Ad */}
                         {!adsBlocked && (
-                          <div className="col-span-1">
-                            <div className="bg-gradient-to-b from-purple-500 to-pink-500 text-white p-4 rounded-lg sticky top-4">
-                              <div className="text-xs mb-2">SPONSORED</div>
-                              <div className="font-bold mb-2">New Phone Release!</div>
-                              <div className="text-sm mb-3">Get the latest smartphone with amazing features</div>
-                              <button className="bg-white text-purple-600 px-3 py-1 rounded text-sm font-bold">
-                                SHOP NOW
+                          <div className="w-32 flex-shrink-0">
+                            <div className="bg-gradient-to-br from-purple-500 to-pink-500 text-white p-2 rounded text-center">
+                              <div className="text-xs mb-1 opacity-80">AD</div>
+                              <div className="text-xs font-bold mb-1">New Phone!</div>
+                              <div className="text-xs mb-2">Latest Tech</div>
+                              <button className="bg-white text-purple-600 px-2 py-0.5 rounded text-xs font-bold">
+                                BUY
                               </button>
                             </div>
                           </div>
                         )}
 
                         {/* Main Article */}
-                        <div className={`${adsBlocked ? 'col-span-3' : 'col-span-2'}`}>
+                        <div className="flex-1">
                           {/* Breaking News */}
-                          <article className="bg-white rounded-lg shadow-md p-6 mb-4">
-                            <div className="flex items-center gap-2 mb-3">
-                              <span className="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">
+                          <article className="bg-white rounded shadow-sm p-3 mb-2">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="bg-red-600 text-white text-xs px-1.5 py-0.5 rounded font-bold">
                                 BREAKING
                               </span>
-                              <span className="text-gray-500 text-sm">5 minutes ago</span>
+                              <span className="text-gray-500 text-xs">5 min ago</span>
                             </div>
-                            <h1 className="text-2xl font-bold mb-3">
-                              Major Tech Company Announces Revolutionary AI Breakthrough
+                            <h1 className="text-sm font-bold mb-1">
+                              Tech Giant Unveils Revolutionary AI System
                             </h1>
-                            <p className="text-gray-700 mb-4 leading-relaxed">
-                              In a stunning announcement today, leading technology company unveiled their latest 
-                              artificial intelligence system that promises to transform how we interact with computers...
+                            <p className="text-xs text-gray-700 mb-2 line-clamp-2">
+                              Major technology company announces breakthrough artificial intelligence that promises to transform computing...
                             </p>
                             
                             {/* Inline Ad */}
                             {!adsBlocked && (
-                              <div className="bg-blue-50 border-2 border-blue-200 p-3 rounded my-4">
-                                <div className="text-xs text-blue-600 mb-1">AD</div>
-                                <div className="flex items-center gap-3">
-                                  <div className="w-16 h-16 bg-blue-400 rounded flex items-center justify-center text-white text-2xl">
-                                    🏠
-                                  </div>
-                                  <div>
-                                    <div className="font-semibold">Find Your Dream Home</div>
-                                    <div className="text-sm text-gray-600">Browse thousands of listings</div>
-                                  </div>
+                              <div className="bg-blue-50 border border-blue-200 p-1.5 rounded my-2 flex items-center gap-2">
+                                <div className="w-8 h-8 bg-blue-400 rounded flex items-center justify-center text-white text-xs">
+                                  🏠
+                                </div>
+                                <div className="flex-1">
+                                  <div className="text-xs font-semibold">Dream Homes</div>
+                                  <div className="text-xs text-gray-600">Find yours today!</div>
                                 </div>
                               </div>
                             )}
                             
-                            <p className="text-gray-700 mb-4">
-                              The new system, which has been in development for over three years, demonstrates 
-                              capabilities that exceed current industry standards by a significant margin...
-                            </p>
-                            
-                            <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
                               <span>By Sarah Johnson</span>
                               <span>•</span>
-                              <span>Technology</span>
+                              <span>Tech</span>
                               <span>•</span>
                               <span>12.5K views</span>
                             </div>
                           </article>
 
                           {/* More Articles Grid */}
-                          <div className="grid grid-cols-2 gap-4">
-                            <article className="bg-white rounded-lg shadow-sm p-4">
-                              <h3 className="font-bold mb-2">Stock Market Hits Record High</h3>
-                              <p className="text-sm text-gray-600 mb-2">
-                                Major indices close at all-time highs as investors...
+                          <div className="grid grid-cols-2 gap-2">
+                            <article className="bg-white rounded shadow-sm p-2">
+                              <h3 className="font-bold text-xs mb-1">Markets Hit Record</h3>
+                              <p className="text-xs text-gray-600 line-clamp-2">
+                                Stocks surge to new highs...
                               </p>
-                              <span className="text-xs text-blue-600">Business • 2h ago</span>
                             </article>
                             
                             {!adsBlocked ? (
-                              <div className="bg-gradient-to-br from-green-400 to-teal-500 text-white rounded-lg p-4">
-                                <div className="text-xs mb-1">PROMOTED</div>
-                                <div className="font-bold mb-1">Lose Weight Fast!</div>
-                                <div className="text-sm">Try our new fitness program</div>
+                              <div className="bg-gradient-to-br from-green-400 to-teal-500 text-white rounded p-2 text-center">
+                                <div className="text-xs opacity-80">AD</div>
+                                <div className="text-xs font-bold">Get Fit!</div>
                               </div>
                             ) : (
-                              <article className="bg-white rounded-lg shadow-sm p-4">
-                                <h3 className="font-bold mb-2">Climate Summit Reaches Agreement</h3>
-                                <p className="text-sm text-gray-600 mb-2">
-                                  World leaders commit to new environmental targets...
+                              <article className="bg-white rounded shadow-sm p-2">
+                                <h3 className="font-bold text-xs mb-1">Climate Deal</h3>
+                                <p className="text-xs text-gray-600 line-clamp-2">
+                                  World leaders agree...
                                 </p>
-                                <span className="text-xs text-blue-600">Environment • 4h ago</span>
                               </article>
                             )}
                           </div>
@@ -875,13 +902,15 @@ export default function HeroSection() {
 
                       {/* Bottom Banner Ad */}
                       {!adsBlocked && (
-                        <div className="mt-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6 rounded-lg text-center">
-                          <div className="text-xs mb-2">ADVERTISEMENT</div>
-                          <div className="text-2xl font-bold mb-2">🚗 Auto Insurance Quotes</div>
-                          <div className="mb-3">Save up to $500 on your car insurance!</div>
-                          <button className="bg-white text-indigo-600 px-6 py-2 rounded font-bold">
-                            GET QUOTE
-                          </button>
+                        <div className="mt-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-2 rounded text-center">
+                          <div className="text-xs flex items-center justify-center gap-2">
+                            <span>🚗 Auto Insurance</span>
+                            <span>•</span>
+                            <span>Save $500!</span>
+                            <button className="bg-white text-indigo-600 px-2 py-0.5 rounded text-xs font-bold ml-2">
+                              QUOTE
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>

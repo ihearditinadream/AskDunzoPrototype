@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import logoBlack from "@assets/unnamed (1)_1751431724399.jpg";
-import logoWhite from "@assets/download_1751431724398.png";
+import logoWhite from "@assets/unnamed (1)_1751521943948.jpg";
 import { SiGooglechrome, SiFirefox } from "react-icons/si";
 
 export default function HeroSection() {
@@ -169,20 +169,20 @@ export default function HeroSection() {
               </div>
 
               {/* Extension Icon in Browser Toolbar */}
-              <div className="absolute -top-11 right-16 z-50 flex items-center gap-1">
-                <div className="h-8 w-[1px] bg-gray-300"></div>
-                <div className={`w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center transition-all cursor-pointer ${
-                  demoStep === 0 ? 'hover:shadow-md hover:scale-105' : 
-                  demoStep === 1 ? 'animate-pulse shadow-lg scale-110' : 
-                  'shadow-lg scale-110'
+              <div className="absolute -top-9 right-4 z-50">
+                <div className={`w-8 h-8 rounded flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                  demoStep === 0 ? 'bg-gray-100 hover:bg-gray-200' : 
+                  demoStep === 1 ? 'bg-black shadow-lg scale-110' : 
+                  'bg-gray-900'
                 }`}>
                   <img 
                     src={logoWhite} 
-                    alt="AskDunzo" 
-                    className="w-5 h-5 object-contain"
+                    alt="Dunzo" 
+                    className={`w-5 h-5 object-contain ${
+                      demoStep >= 1 ? 'invert' : ''
+                    }`}
                   />
                 </div>
-                <div className="h-8 w-[1px] bg-gray-300"></div>
               </div>
 
               {/* AskDunzo Interface Overlay */}
@@ -194,12 +194,11 @@ export default function HeroSection() {
                     top: '50%',
                     left: '50%'
                   }}>
-                    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 2L5 14L7 12L9 16L11 15L9 11L12 11L5 2Z" 
-                        fill="white" 
-                        stroke="black" 
-                        strokeWidth="1.5"
-                        strokeLinejoin="round"
+                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                      <path d="M1 1L1 11L3 9L5 13L7 12L5 8L9 8L1 1Z" 
+                        fill="black" 
+                        stroke="white" 
+                        strokeWidth="0.5"
                       />
                     </svg>
                   </div>

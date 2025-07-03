@@ -1,4 +1,5 @@
 import logoWhite from "@assets/download_1751431724398.png";
+import { FaXTwitter, FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa6";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -9,123 +10,103 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-black text-white py-12 px-6 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <img 
-              src={logoWhite} 
-              alt="AskDunzo Logo" 
-              className="w-8 h-8 object-contain"
-            />
-            <div>
-              <div className="font-hand text-xl font-bold">AskDunzo</div>
-              <div className="text-sm text-gray-400 -mt-1">Keep I.T. Simple</div>
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Left section - Logo and social */}
+          <div className="lg:w-1/3">
+            <div className="flex items-center space-x-3 mb-3">
+              <img 
+                src={logoWhite} 
+                alt="AskDunzo Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <div className="font-hand text-2xl font-bold">AskDunzo</div>
+            </div>
+            
+            <p className="text-gray-400 text-sm mb-6">
+              © 2026 AskDunzo, Keep I.T. Simple
+            </p>
+            
+            {/* Social Icons */}
+            <div className="flex items-center space-x-4">
+              <a 
+                href="https://twitter.com/askdunzo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Twitter/X"
+              >
+                <FaXTwitter className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://youtube.com/@askdunzo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="YouTube"
+              >
+                <FaYoutube className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://instagram.com/askdunzo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com/company/askdunzo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Transform any website or PC application with simple requests. Join thousands of users who are already keeping I.T. simple.
-          </p>
-        </div>
+          {/* Right section - Links grid */}
+          <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-sm">
+            <div>
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+                Contact Us
+              </a>
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+                Careers
+              </a>
+              <a href="#" className="block hover:text-gray-300 transition-colors">
+                Ethos
+              </a>
+            </div>
+            
+            <div>
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+                Help
+              </a>
+            </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8">
-          <div>
-            <h4 className="font-bold mb-4">Product</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button 
-                  onClick={() => scrollToSection("features")}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  Features
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection("pricing")}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  Pricing
-                </button>
-              </li>
-              <li>
-                <a href="/download" className="hover:text-white transition-colors">
-                  Download
-                </a>
-              </li>
-            </ul>
+            <div>
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+                Terms of Service
+              </a>
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+                Privacy Policy
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="block hover:text-gray-300 transition-colors mb-3">
+                Acts Notices
+              </a>
+              <a href="#" className="block hover:text-gray-300 transition-colors">
+                News
+              </a>
+            </div>
           </div>
-
-          <div>
-            <h4 className="font-bold mb-4">Community</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button 
-                  onClick={() => scrollToSection("websquare")}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  WebSquare
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Developers
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Forum
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold mb-4">Support</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Help Center
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Contact Us
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Bug Reports
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold mb-4">Company</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  About
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Privacy Policy
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-white transition-colors text-left">
-                  Terms of Service
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>© 2026 AskDunzo. All rights reserved</p>
         </div>
       </div>
     </footer>

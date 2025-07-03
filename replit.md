@@ -126,14 +126,16 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 ### January 03, 2025 - Hero Animation Enhancement
-- ✓ Added 3-animation cycle in hero section (was 1, now 3 total)
-- ✓ Animation 1: Blog site with dark mode toggle (existing)
+- ✓ Added 4-animation cycle in hero section (was 1, now 4 total)
+- ✓ Animation 1: Blog site with dark mode toggle (enhanced)
 - ✓ Animation 2: YouTube comments sorted by likes (new)
 - ✓ Animation 3: Instagram post with download button (new)
+- ✓ Animation 4: News website with ad blocker (new)
 - ✓ Each animation shows complete workflow: icon → input → typing → processing → feature added
-- ✓ Smooth transitions between all 3 animations with 13-second cycles
-- ✓ Dynamic browser URL changes (myblog.com, youtube.com, instagram.com)
-- ✓ Interactive elements work during demos (dark mode toggle, sort button, download button)
+- ✓ Smooth transitions between all 4 animations with 13-second cycles
+- ✓ Dynamic browser URL changes (myblog.com, youtube.com, instagram.com, news.com)
+- ✓ Interactive elements work during demos (dark mode toggle, sort button, download button, block ads button)
+- ✓ Beautiful, polished UI designs for all animations with realistic website layouts
 
 ### January 03, 2025 - Product Alignment with Technical Specification
 - ✓ Updated browser extension text: "What would you like to add or change on this site?" 

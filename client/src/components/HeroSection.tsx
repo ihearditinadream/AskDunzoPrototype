@@ -8,9 +8,10 @@ export default function HeroSection() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [inputText, setInputText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
-  const [currentAnimation, setCurrentAnimation] = useState(1); // 1: dark mode, 2: youtube, 3: instagram
+  const [currentAnimation, setCurrentAnimation] = useState(1); // 1: dark mode, 2: youtube, 3: instagram, 4: ad blocker
   const [sortedComments, setSortedComments] = useState(false);
   const [downloadButtonAdded, setDownloadButtonAdded] = useState(false);
+  const [adsBlocked, setAdsBlocked] = useState(false);
 
   useEffect(() => {
     const runAnimation = () => {
@@ -20,6 +21,7 @@ export default function HeroSection() {
       setIsDarkMode(false);
       setSortedComments(false);
       setDownloadButtonAdded(false);
+      setAdsBlocked(false);
 
       // Animate the entire process
       let animationSteps: { delay: number; action: () => void }[] = [];
@@ -56,6 +58,16 @@ export default function HeroSection() {
           { delay: 8000, action: () => setDemoStep(5) }, // Show download button
           { delay: 9500, action: () => setDownloadButtonAdded(true) }, // Show added state
         ];
+      } else if (currentAnimation === 4) {
+        // Ad blocker animation
+        animationSteps = [
+          { delay: 1500, action: () => setDemoStep(1) }, // Show AskDunzo icon
+          { delay: 2500, action: () => setDemoStep(2) }, // Show input box
+          { delay: 3500, action: () => setDemoStep(3) }, // Start typing
+          { delay: 6500, action: () => setDemoStep(4) }, // Finish typing, show processing
+          { delay: 8000, action: () => setDemoStep(5) }, // Show block ads button
+          { delay: 9500, action: () => setAdsBlocked(true) }, // Block ads
+        ];
       }
 
       const timers = animationSteps.map(step => 
@@ -64,7 +76,7 @@ export default function HeroSection() {
 
       // Move to next animation after this one completes
       const nextAnimationTimer = setTimeout(() => {
-        setCurrentAnimation(prev => prev === 3 ? 1 : prev + 1);
+        setCurrentAnimation(prev => prev === 4 ? 1 : prev + 1);
       }, 13000);
 
       return [...timers, nextAnimationTimer];
@@ -85,6 +97,8 @@ export default function HeroSection() {
         targetText = "Sort YouTube comments by likes";
       } else if (currentAnimation === 3) {
         targetText = "Add a download button to Instagram";
+      } else if (currentAnimation === 4) {
+        targetText = "Block all ads on this website";
       }
       
       let currentIndex = 0;
@@ -149,6 +163,7 @@ export default function HeroSection() {
                   {currentAnimation === 1 && "myblog.com"}
                   {currentAnimation === 2 && "youtube.com"}
                   {currentAnimation === 3 && "instagram.com"}
+                  {currentAnimation === 4 && "news.com"}
                 </div>
               </div>
 
@@ -701,6 +716,174 @@ export default function HeroSection() {
                           <p className="text-xs text-gray-500 uppercase">2 hours ago</p>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {currentAnimation === 4 && (
+                  <div className={`transition-all duration-700 ${demoStep === 1 ? 'opacity-50' : 'opacity-100'}`}>
+                    {/* News Website Header */}
+                    <div className="bg-red-600 px-4 py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="text-white text-2xl font-bold">
+                          <span className="bg-white text-red-600 px-2 py-1 rounded">NEWS</span>
+                          <span className="ml-1">TODAY</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-4 text-white text-sm">
+                        <span>Politics</span>
+                        <span>Tech</span>
+                        <span>Sports</span>
+                        <span>Weather</span>
+                      </div>
+                    </div>
+
+                    {/* Ad Blocker Button */}
+                    {demoStep >= 5 && (
+                      <div className="absolute top-20 right-4 z-50">
+                        <Button
+                          onClick={() => setAdsBlocked(!adsBlocked)}
+                          className={`transition-all duration-500 transform ${
+                            demoStep >= 5 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-0'
+                          } ${adsBlocked 
+                            ? 'bg-green-600 hover:bg-green-700' 
+                            : 'bg-red-600 hover:bg-red-700'
+                          } text-white shadow-lg flex items-center gap-2`}
+                        >
+                          {adsBlocked ? (
+                            <>
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              Ads Blocked!
+                            </>
+                          ) : (
+                            <>
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                              </svg>
+                              Block Ads
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* News Content */}
+                    <div className="bg-gray-100 p-4">
+                      {/* Top Banner Ad */}
+                      {!adsBlocked && (
+                        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-4 rounded-lg mb-4 text-center font-bold animate-pulse">
+                          <div className="text-xs mb-1">ADVERTISEMENT</div>
+                          <div className="text-xl">🎯 LIMITED TIME OFFER - 50% OFF!</div>
+                          <div className="text-sm">Click here for amazing deals!</div>
+                        </div>
+                      )}
+
+                      {/* Main Content Grid */}
+                      <div className="grid grid-cols-3 gap-4">
+                        {/* Left Sidebar Ad */}
+                        {!adsBlocked && (
+                          <div className="col-span-1">
+                            <div className="bg-gradient-to-b from-purple-500 to-pink-500 text-white p-4 rounded-lg sticky top-4">
+                              <div className="text-xs mb-2">SPONSORED</div>
+                              <div className="font-bold mb-2">New Phone Release!</div>
+                              <div className="text-sm mb-3">Get the latest smartphone with amazing features</div>
+                              <button className="bg-white text-purple-600 px-3 py-1 rounded text-sm font-bold">
+                                SHOP NOW
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Main Article */}
+                        <div className={`${adsBlocked ? 'col-span-3' : 'col-span-2'}`}>
+                          {/* Breaking News */}
+                          <article className="bg-white rounded-lg shadow-md p-6 mb-4">
+                            <div className="flex items-center gap-2 mb-3">
+                              <span className="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">
+                                BREAKING
+                              </span>
+                              <span className="text-gray-500 text-sm">5 minutes ago</span>
+                            </div>
+                            <h1 className="text-2xl font-bold mb-3">
+                              Major Tech Company Announces Revolutionary AI Breakthrough
+                            </h1>
+                            <p className="text-gray-700 mb-4 leading-relaxed">
+                              In a stunning announcement today, leading technology company unveiled their latest 
+                              artificial intelligence system that promises to transform how we interact with computers...
+                            </p>
+                            
+                            {/* Inline Ad */}
+                            {!adsBlocked && (
+                              <div className="bg-blue-50 border-2 border-blue-200 p-3 rounded my-4">
+                                <div className="text-xs text-blue-600 mb-1">AD</div>
+                                <div className="flex items-center gap-3">
+                                  <div className="w-16 h-16 bg-blue-400 rounded flex items-center justify-center text-white text-2xl">
+                                    🏠
+                                  </div>
+                                  <div>
+                                    <div className="font-semibold">Find Your Dream Home</div>
+                                    <div className="text-sm text-gray-600">Browse thousands of listings</div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            <p className="text-gray-700 mb-4">
+                              The new system, which has been in development for over three years, demonstrates 
+                              capabilities that exceed current industry standards by a significant margin...
+                            </p>
+                            
+                            <div className="flex items-center gap-4 text-sm text-gray-500">
+                              <span>By Sarah Johnson</span>
+                              <span>•</span>
+                              <span>Technology</span>
+                              <span>•</span>
+                              <span>12.5K views</span>
+                            </div>
+                          </article>
+
+                          {/* More Articles Grid */}
+                          <div className="grid grid-cols-2 gap-4">
+                            <article className="bg-white rounded-lg shadow-sm p-4">
+                              <h3 className="font-bold mb-2">Stock Market Hits Record High</h3>
+                              <p className="text-sm text-gray-600 mb-2">
+                                Major indices close at all-time highs as investors...
+                              </p>
+                              <span className="text-xs text-blue-600">Business • 2h ago</span>
+                            </article>
+                            
+                            {!adsBlocked ? (
+                              <div className="bg-gradient-to-br from-green-400 to-teal-500 text-white rounded-lg p-4">
+                                <div className="text-xs mb-1">PROMOTED</div>
+                                <div className="font-bold mb-1">Lose Weight Fast!</div>
+                                <div className="text-sm">Try our new fitness program</div>
+                              </div>
+                            ) : (
+                              <article className="bg-white rounded-lg shadow-sm p-4">
+                                <h3 className="font-bold mb-2">Climate Summit Reaches Agreement</h3>
+                                <p className="text-sm text-gray-600 mb-2">
+                                  World leaders commit to new environmental targets...
+                                </p>
+                                <span className="text-xs text-blue-600">Environment • 4h ago</span>
+                              </article>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bottom Banner Ad */}
+                      {!adsBlocked && (
+                        <div className="mt-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6 rounded-lg text-center">
+                          <div className="text-xs mb-2">ADVERTISEMENT</div>
+                          <div className="text-2xl font-bold mb-2">🚗 Auto Insurance Quotes</div>
+                          <div className="mb-3">Save up to $500 on your car insurance!</div>
+                          <button className="bg-white text-indigo-600 px-6 py-2 rounded font-bold">
+                            GET QUOTE
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}

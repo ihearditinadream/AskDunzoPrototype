@@ -93,6 +93,31 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* Mouse cursor animation */
+@keyframes moveMouse {
+  0% {
+    top: 50%;
+    left: 50%;
+  }
+  80% {
+    top: -35px;
+    right: 76px;
+    left: auto;
+  }
+  90% {
+    top: -35px;
+    right: 76px;
+    left: auto;
+    transform: scale(0.9);
+  }
+  100% {
+    top: -35px;
+    right: 76px;
+    left: auto;
+    transform: scale(1);
+  }
+}
+
 /* Hand-drawn button style */
 .hand-drawn-button {
   position: relative;

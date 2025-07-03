@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import logoBlack from "@assets/unnamed (1)_1751431724399.jpg";
+import logoWhite from "@assets/download_1751431724398.png";
 import { SiGooglechrome, SiFirefox } from "react-icons/si";
 
 export default function HeroSection() {
@@ -167,31 +168,40 @@ export default function HeroSection() {
                 </div>
               </div>
 
+              {/* Extension Icon in Browser Toolbar */}
+              <div className="absolute -top-11 right-16 z-50 flex items-center gap-1">
+                <div className="h-8 w-[1px] bg-gray-300"></div>
+                <div className={`w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center transition-all cursor-pointer ${
+                  demoStep === 0 ? 'hover:shadow-md hover:scale-105' : 
+                  demoStep === 1 ? 'animate-pulse shadow-lg scale-110' : 
+                  'shadow-lg scale-110'
+                }`}>
+                  <img 
+                    src={logoWhite} 
+                    alt="AskDunzo" 
+                    className="w-5 h-5 object-contain"
+                  />
+                </div>
+                <div className="h-8 w-[1px] bg-gray-300"></div>
+              </div>
+
               {/* AskDunzo Interface Overlay */}
               <div className="relative bg-white p-4 sm:p-6 md:p-8 min-h-[250px] sm:min-h-[350px] md:min-h-[400px]">
-                {/* Step 1: Show only centered logo */}
+                {/* Mouse Cursor Animation */}
                 {demoStep === 1 && (
-                  <div className="absolute inset-0 flex justify-center items-center z-50">
-                    <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center animate-pulse">
-                      <img 
-                        src={logoBlack} 
-                        alt="AskDunzo" 
-                        className="w-12 h-12 object-contain invert"
+                  <div className="absolute pointer-events-none z-[60]" style={{
+                    animation: 'moveMouse 1.5s ease-in-out forwards',
+                    top: '50%',
+                    left: '50%'
+                  }}>
+                    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 2L5 14L7 12L9 16L11 15L9 11L12 11L5 2Z" 
+                        fill="white" 
+                        stroke="black" 
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 2+: Logo in corner with higher z-index */}
-                {demoStep >= 2 && (
-                  <div className="absolute top-4 right-4 z-50">
-                    <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
-                      <img 
-                        src={logoBlack} 
-                        alt="AskDunzo" 
-                        className="w-6 h-6 object-contain invert"
-                      />
-                    </div>
+                    </svg>
                   </div>
                 )}
 

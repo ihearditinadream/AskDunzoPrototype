@@ -125,7 +125,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 AskDunzo. All rights reserved. Keep I.T. Simple.</p>
+          <p>&copy; 2026 AskDunzo. All rights reserved. Keep I.T. Simple.</p>
         </div>
       </div>
     </footer>

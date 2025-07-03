@@ -67,7 +67,7 @@ export default function DataSharingSection() {
                   <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Popular</span>
                 </div>
                 <p className="text-gray-600 mb-4">Keep 50% of profits from your anonymized data</p>
-                <div className="text-2xl font-bold text-black">You earn: $2-8/month</div>
+                <div className="text-2xl font-bold text-black">Help improve AskDunzo</div>
               </div>
 
               <div 

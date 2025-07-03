@@ -220,19 +220,35 @@ export default function HeroSection() {
           {/* Compatibility Icons */}
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-500">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gray-400 rounded"></div>
+              <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-green-500 rounded flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.001 5.5c.607 0 1.211.127 1.78.374l-5.61 5.61a6.452 6.452 0 0 1-.169-1.485c0-3.584 2.916-6.5 6-6.5zm0 13c-.607 0-1.211-.127-1.78-.374l5.61-5.61c.11.478.17.975.17 1.484 0 3.584-2.916 6.5-6 6.5z"/>
+                </svg>
+              </div>
               <span className="text-sm">Chrome</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gray-400 rounded"></div>
+              <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-yellow-500 rounded flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.44 8.65c-.386-1.017-1.16-2.217-2.175-3.284a10.93 10.93 0 0 0-.494-2.066C19.925 1.254 18.17.16 16.125.16c-.813 0-1.653.173-2.434.5C13.25.533 12.795.48 12.32.48c-.72 0-1.36.08-1.853.307-3.36 1.386-5.827 4.693-5.827 8.533 0 .16 0 .333.013.493C1.8 11.093 0 13.813 0 16.907c0 3.933 2.84 7.267 6.787 7.92.88.147 1.787.173 2.667.08.32-.04.64-.107.973-.173.707-.133 1.44-.387 2.174-.72.373-.173.76-.36 1.133-.573a16.02 16.02 0 0 0 3.12-2.533 15.867 15.867 0 0 0 3.12-4.107c.373-.747.68-1.547.907-2.387.413-1.467.533-3.04.173-4.667a9.329 9.329 0 0 0-.693-2.107zm-11.12 11.66c-4.587 0-8.32-3.733-8.32-8.32s3.733-8.32 8.32-8.32 8.32 3.733 8.32 8.32-3.733 8.32-8.32 8.32z"/>
+                </svg>
+              </div>
               <span className="text-sm">Firefox</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gray-400 rounded"></div>
+              <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-cyan-500 rounded flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 12V6.75L9 5.43v6.48l-6 1.01m0-6.41v6.41L9 11.51M3 13l6-1.01v6.41l-6 1.17V13m18 0v6.75L15 21.07v-6.48l6-1.01m0 6.41v-6.41L15 12.49m0-6.41l6-1.17V11.59L15 12.6V6.08"/>
+                </svg>
+              </div>
               <span className="text-sm">Windows</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gray-400 rounded"></div>
+              <div className="w-6 h-6 bg-gradient-to-br from-gray-800 to-gray-600 rounded flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+              </div>
               <span className="text-sm">macOS</span>
             </div>
           </div>

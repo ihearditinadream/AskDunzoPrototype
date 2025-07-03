@@ -125,6 +125,11 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### January 03, 2025 - UI Enhancements
+- ✓ Added visual icons to Chrome, Firefox, Windows, and macOS compatibility buttons
+- ✓ Updated data sharing earnings display to focus on community contribution
+- ✓ Updated footer copyright year to 2026
+
 ### July 02, 2025 - AskDunzo Product Implementation
 - ✓ Created Chrome browser extension with manifest v3
 - ✓ Implemented content script with floating button UI
